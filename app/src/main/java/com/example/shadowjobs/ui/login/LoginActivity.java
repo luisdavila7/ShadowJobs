@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,14 +24,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shadowjobs.R;
-import com.example.shadowjobs.ui.login.LoginViewModel;
-import com.example.shadowjobs.ui.login.LoginViewModelFactory;
+import com.example.shadowjobs.Register;
 import com.example.shadowjobs.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
+    Button btnLogin, btnSignup, forgotPass;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,14 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+
+        btnLogin = findViewById(R.id.login);
+        btnSignup = findViewById(R.id.signup);
+        forgotPass = findViewById(R.id.forgotPass);
+
+        btnSignup.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, Register.class));
+        });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -133,4 +143,5 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
 }
