@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552018851846",
+    "project_id": "shadowjobs-b73a6",
+    "storage_bucket": "shadowjobs-b73a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552018851846:android:141dac6f2a942d58ce2b87",
+        "android_client_info": {
+          "package_name": "com.example.shadowjobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552018851846-60ktb716svub5md2be3hpune4ivl0nl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgM2HsCgR2xGzdo5o21W6ictED90Lhsxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552018851846-60ktb716svub5md2be3hpune4ivl0nl9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

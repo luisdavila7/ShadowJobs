@@ -40,34 +40,27 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="371dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="258dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password">
 
-        <LinearLayout
-            android:layout_width="281dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+        <RadioButton
+            android:id="@+id/rBtnShadows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="60dp"
+            android:text="Shadows" />
 
-            <RadioButton
-                android:id="@+id/rBtnShadows"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="60dp"
-                android:text="Shadows" />
-
-            <RadioButton
-                android:id="@+id/rBtnRestaurants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Restaurants" />
-        </LinearLayout>
+        <RadioButton
+            android:id="@+id/rBtnRestaurants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurants" />
     </RadioGroup>
 
     <Button
@@ -78,7 +71,7 @@
         android:background="#00FFFFFF"
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="sans-serif"
-        android:text="Signup Now!"
+        android:text="Sign up Now!"
         android:textColor="#2196F3"
         android:textStyle="italic"
         app:iconTint="#FFFFFF"
