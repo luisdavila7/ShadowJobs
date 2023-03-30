@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ShadowJobs"
         tools:targetApi="31">
         <activity
+            android:name=".ShadowProfile"
+            android:exported="false" />
+        <activity
             android:name=".RestoRegistration"
             android:exported="false" />
         <activity

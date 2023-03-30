@@ -23,5 +23,11 @@ public class RegisterAs extends AppCompatActivity {
             startActivity(new Intent(RegisterAs.this, StudentRegistration.class));
 
         });
+
+        btnRestaurant.setOnClickListener(v -> {
+
+            startActivity(new Intent(RegisterAs.this, RestoRegistration.class));
+
+        });
     }
 }
