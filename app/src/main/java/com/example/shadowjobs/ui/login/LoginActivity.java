@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shadowjobs.R;
-import com.example.shadowjobs.Register;
+import com.example.shadowjobs.RegisterAs;
 import com.example.shadowjobs.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotPass = findViewById(R.id.forgotPass);
 
         btnSignup.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, Register.class));
+            startActivity(new Intent(LoginActivity.this, RegisterAs.class));
         });
     }
 
