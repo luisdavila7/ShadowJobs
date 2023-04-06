@@ -1,17 +1,16 @@
  package com.example.shadowjobs;
 
-import androidx.appcompat.app.AppCompatActivity;
+ import android.graphics.Color;
+ import android.os.Bundle;
 
-import android.graphics.Color;
-import android.os.Bundle;
+ import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
+ import com.github.mikephil.charting.charts.BarChart;
+ import com.github.mikephil.charting.data.BarData;
+ import com.github.mikephil.charting.data.BarDataSet;
+ import com.github.mikephil.charting.data.BarEntry;
 
-import java.util.ArrayList;
+ import java.util.ArrayList;
 
  public class ShadowProfile extends AppCompatActivity {/**/
 
