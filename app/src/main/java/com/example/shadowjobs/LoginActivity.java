@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,19 +29,26 @@ public class LoginActivity extends AppCompatActivity {
         radioShadow = findViewById(R.id.rBtnShadows);
         radioRestaurant = findViewById(R.id.rBtnRestaurants);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnLogin.setOnClickListener(view -> {
+
+            //Check on which activity to send the user when login
+            if(radioShadow.isChecked() && validUserName() && validPass()){
+
+                //Get Shadow info and send to ShadowProfile activity
+
+            } else if (radioRestaurant.isChecked() && validUserName() && validPass()){
+
+                //Get Restaurant info and send to RestoProfile activity
+
+            } else {
+
+                Toast.makeText(LoginActivity.this, "Please select a type of user to login", Toast.LENGTH_SHORT).show();
 
             }
+
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterAs.class));
-            }
-        });
+        btnSignUp.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterAs.class)));
 
     }
 
