@@ -20,6 +20,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnEditShadow"
+        android:layout_width="51dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="76dp"
+        android:background="#00000000"
+        android:textAlignment="center"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/userPicture"
         android:layout_width="100dp"
@@ -28,7 +42,7 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
         android:id="@+id/txtFirstName"
@@ -57,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtFirstName" />
 
     <TextView
-        android:id="@+id/txtPhone"
+        android:id="@+id/txtMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -80,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toEndOf="@+id/userPicture"
-        app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMobile" />
 
     <TextView
         android:id="@+id/textView8"
@@ -94,15 +108,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userPicture" />
 
-    <EditText
-        android:id="@+id/eTxtShadow"
+    <TextView
+        android:id="@+id/shadowDesc"
         android:layout_width="325dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="6dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Please, tell us more about you!"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:hint="Tell us more about yourself"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTxtShadow">
+        app:layout_constraintTop_toBottomOf="@+id/shadowDesc">
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,6 +195,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" >
+    </com.github.mikephil.charting.charts.BarChart>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

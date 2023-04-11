@@ -20,7 +20,7 @@ public class RegisterAs extends AppCompatActivity {
 
         btnStudent.setOnClickListener(v -> {
 
-            startActivity(new Intent(RegisterAs.this, StudentRegistration.class));
+            startActivity(new Intent(RegisterAs.this, ShadowRegistration.class));
 
         });
 
