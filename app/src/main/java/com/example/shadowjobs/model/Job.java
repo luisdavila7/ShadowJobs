@@ -10,6 +10,9 @@ public class Job {
     private String description;
     private Float salary;
 
+    public Job(){
+
+    }
     public Job(String jobId, String restaurantId, String position, String address, String contactName, String contactPhoneNumber, String description, Float salary) {
         this.jobId = jobId;
         this.restaurantId = restaurantId;

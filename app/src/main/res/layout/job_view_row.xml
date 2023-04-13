@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="75dp"
     android:layout_margin="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,46 +12,67 @@
 
         <TextView
             android:id="@+id/textViewJobPosition"
-            android:layout_width="189dp"
-            android:layout_height="20dp"
+            android:layout_width="256dp"
+            android:layout_height="22dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="3dp"
             android:layout_marginEnd="29dp"
-            android:layout_marginBottom="43dp"
+            android:layout_marginBottom="50dp"
             android:layout_toStartOf="@+id/textViewJobSalary"
             android:layout_weight="1"
-            android:text="Position" />
+            android:text="Position"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/textViewJobSalary"
-            android:layout_width="63dp"
-            android:layout_height="20dp"
+            android:layout_width="57dp"
+            android:layout_height="22dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="44dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginBottom="51dp"
             android:layout_weight="1"
-            android:text="Salary" />
+            android:text="Salary"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewJobSalaryCad"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="50dp"
+            android:layout_weight="1"
+            android:text="CAD"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewJobDescription"
-            android:layout_width="397dp"
-            android:layout_height="38dp"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
             android:layout_weight="1"
-            android:text="Description" />
+            android:text="Description"
+            android:textSize="12sp" />
 
 
     </RelativeLayout>

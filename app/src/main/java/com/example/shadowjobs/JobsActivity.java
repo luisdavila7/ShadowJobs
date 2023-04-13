@@ -3,6 +3,7 @@ package com.example.shadowjobs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class JobsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     JobsListRecyclerAdapter jobsListRecyclerAdapter;
 
-    ArrayList<Job> jobList;
+    ArrayList<Job> jobList = new ArrayList<Job>();
     CoordinatorLayout coordinatorLayout;
 
     @Override
@@ -34,24 +35,28 @@ public class JobsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewJobsList);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
+        jobsListRecyclerAdapter = new JobsListRecyclerAdapter(jobList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(jobsListRecyclerAdapter);
+
         databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                jobList = new ArrayList<Job>();
 
+                //jobList = new ArrayList<Job>();
                 if (task.isSuccessful()) {
                     for (DataSnapshot ds : task.getResult().getChildren()){
-                        String jobId = ds.getKey();
-                        Job job = ds.child(jobId).getValue(Job.class);
+                        Job job = ds.getValue(Job.class);
                         jobList.add(job);
-                        String test = new String();
                     }
 
-                    jobsListRecyclerAdapter = new JobsListRecyclerAdapter(jobList);
-                    recyclerView.setAdapter(jobsListRecyclerAdapter);
+                    jobsListRecyclerAdapter.notifyDataSetChanged();
+
                 }
             }
         });
+
+
 
     }
 }
