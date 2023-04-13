@@ -2,11 +2,10 @@ package com.example.shadowjobs.model;
 
 public class shadowModel {
 
-    String id, fName, lName, phone, email, desc;
+    String fName, lName, phone, email, desc;
 
     public shadowModel(String id, String fName, String lName, String  phone, String  email, String  desc){
 
-        this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.phone = phone;

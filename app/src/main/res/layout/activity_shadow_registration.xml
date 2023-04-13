@@ -44,10 +44,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/fname"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="60dp"
+        android:textColor="#333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -66,14 +67,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/lname"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="5dp"
+        android:textColor="#333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/editText1" />
+        app:layout_constraintTop_toBottomOf="@+id/fname" />
 
     <TextView
         android:id="@+id/textView4"
@@ -88,14 +90,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/email"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="5dp"
+        android:textColor="#333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/lname" />
 
     <TextView
         android:id="@+id/textView5"
@@ -110,15 +113,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/password"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="5dp"
         android:inputType="textPassword"
+        android:textColor="#333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/textView6"
@@ -133,14 +137,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/address"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#333"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/textView7"
@@ -156,14 +161,15 @@
 
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/phone"
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
+        android:textColor="#333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <Button
         android:id="@+id/button"
@@ -176,7 +182,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -190,7 +196,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
         tools:ignore="MissingConstraints" />
 
     <TextView
