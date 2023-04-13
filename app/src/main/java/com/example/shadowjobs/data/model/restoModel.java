@@ -2,10 +2,11 @@ package com.example.shadowjobs.data.model;
 
 public class restoModel {
 
-    String name, address, phone, email, website, desc;
+    String id, name, address, phone, email, website, desc;
 
-    public restoModel(String name, String address, String phone, String email, String website, String desc){
+    public restoModel(String id, String name, String address, String phone, String email, String website, String desc){
 
+        this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
