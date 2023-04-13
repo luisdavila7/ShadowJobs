@@ -1,11 +1,11 @@
 package com.example.shadowjobs;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import com.example.shadowjobs.model.Job;
 import com.google.android.gms.tasks.OnCompleteListener;
