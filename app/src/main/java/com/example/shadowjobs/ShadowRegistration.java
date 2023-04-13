@@ -19,9 +19,6 @@ public class ShadowRegistration extends AppCompatActivity {
 
         cancel = findViewById(R.id.btnCancel);
 
-        cancel.setOnClickListener(v -> {
-            Intent BackMenu = new Intent(ShadowRegistration.this, LoginActivity.class);
-            startActivity(BackMenu);
-        });
+        cancel.setOnClickListener(v -> startActivity(new Intent(ShadowRegistration.this, LoginActivity.class)));
     }
 }

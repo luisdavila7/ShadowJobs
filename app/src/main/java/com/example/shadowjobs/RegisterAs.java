@@ -18,12 +18,7 @@ public class RegisterAs extends AppCompatActivity {
         btnStudent = findViewById(R.id.btnStudent);
         btnRestaurant = findViewById(R.id.btnRestaurant);
 
-        btnStudent.setOnClickListener(v -> {
-
-            Intent goToShadowRegistration = new Intent(RegisterAs.this, ShadowRegistration.class);
-            startActivity(goToShadowRegistration);
-
-        });
+        btnStudent.setOnClickListener(v -> startActivity(new Intent(RegisterAs.this, ShadowRegistration.class)));
 
         btnRestaurant.setOnClickListener(v -> startActivity(new Intent(RegisterAs.this, RestoRegistration.class)));
     }

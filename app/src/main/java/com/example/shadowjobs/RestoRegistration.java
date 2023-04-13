@@ -18,13 +18,7 @@ public class RestoRegistration extends AppCompatActivity {
 
         cancel = findViewById(R.id.btnCancel);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent BackMenu = new Intent(RestoRegistration.this, LoginActivity.class);
-                startActivity(BackMenu);
-            }
-        });
+        cancel.setOnClickListener(v -> startActivity(new Intent(RestoRegistration.this, LoginActivity.class)));
 
     }
 }
