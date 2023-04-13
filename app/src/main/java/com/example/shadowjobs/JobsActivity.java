@@ -20,8 +20,7 @@ public class JobsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     JobsListRecyclerAdapter jobsListRecyclerAdapter;
-
-    ArrayList<Job> jobList;
+    ArrayList<Job> jobList = new ArrayList<Job>();
     CoordinatorLayout coordinatorLayout;
 
     @Override
@@ -34,19 +33,20 @@ public class JobsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewJobsList);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
-        databaseReference.child("JobPostings").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
+                if (task.isSuccessful()) {
                     //Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     for (DataSnapshot ds : task.getResult().getChildren()){
-                        jobList.add(ds.getValue(Job.class));
+                        String jobId = ds.getKey();
+                        Job job = ds.child(jobId).getValue(Job.class);
+                        jobList.add(job);
+                        //Job newJob = new Job("11","ee","d","","","","",2.0f);
                     }
+                    jobsListRecyclerAdapter = new JobsListRecyclerAdapter(jobList);
+                    recyclerView.setAdapter(jobsListRecyclerAdapter);
 
-                    jobAdapter = new JobsListRecyclerAdapter(jobList);
                 }
             }
         });

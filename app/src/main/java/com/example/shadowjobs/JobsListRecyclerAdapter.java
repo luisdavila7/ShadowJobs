@@ -21,22 +21,30 @@ public class JobsListRecyclerAdapter extends RecyclerView.Adapter<JobsListRecycl
         return new MyViewHolder(view);
     }
 
-    public JobsListRecyclerAdapter(ArrayList<J>)
+    public JobsListRecyclerAdapter(ArrayList<Job> jobList){
+        this.jobList = jobList;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull JobsListRecyclerAdapter.MyViewHolder holder, int position) {
-
+        holder.jobPosition.setText(jobList.get(position).getPosition());
+        holder.jobSalary.setText(jobList.get(position).getSalary().toString());
+        holder.jobDescription.setText(jobList.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return jobList.size();
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtTitle;
+
+        private TextView jobPosition, jobSalary, jobDescription;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            //txtTitle =  itemView.findViewById(R.id.txtTitle);
+            jobPosition =  itemView.findViewById(R.id.textViewJobPosition);
+            jobSalary =  itemView.findViewById(R.id.textViewJobSalary);
+            jobDescription =  itemView.findViewById(R.id.textViewJobDescription);
         }
 
     }
