@@ -34,19 +34,17 @@ public class JobsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewJobsList);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
 
-        databaseReference.child("JobPostings").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    //Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    //Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                if (task.isSuccessful()) {
                     for (DataSnapshot ds : task.getResult().getChildren()){
-                        jobList.add(ds.getValue(Job.class));
+                        String jobId = ds.getKey();
+                        jobList.add(ds.child(jobId).getValue(Job.class));
                     }
 
-                    jobAdapter = new JobsListRecyclerAdapter(jobList);
+                    jobsListRecyclerAdapter = new JobsListRecyclerAdapter(jobList);
+                    recyclerView.setAdapter(jobsListRecyclerAdapter);
                 }
             }
         });
