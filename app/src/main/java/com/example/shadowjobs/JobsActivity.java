@@ -37,10 +37,14 @@ public class JobsActivity extends AppCompatActivity {
         databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
+                jobList = new ArrayList<Job>();
+
                 if (task.isSuccessful()) {
                     for (DataSnapshot ds : task.getResult().getChildren()){
                         String jobId = ds.getKey();
-                        jobList.add(ds.child(jobId).getValue(Job.class));
+                        Job job = ds.child(jobId).getValue(Job.class);
+                        jobList.add(job);
+                        String test = new String();
                     }
 
                     jobsListRecyclerAdapter = new JobsListRecyclerAdapter(jobList);
