@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ShadowJobs"
         tools:targetApi="31">
         <activity
+            android:name=".DrawerMenu"
+            android:exported="false" />
+        <activity
             android:name=".EditRestoProfile"
             android:exported="false" />
         <activity
