@@ -55,12 +55,12 @@
 
         btnEdit = findViewById(R.id.btnEditShadow);
 
-        showUserData();
+        showShadowData();
         btnEdit.setOnClickListener(v -> passData());
 
     }
 
-    public void showUserData(){
+    public void showShadowData(){
 
         Intent intent = getIntent();
         String userFName = intent.getStringExtra("fName");
