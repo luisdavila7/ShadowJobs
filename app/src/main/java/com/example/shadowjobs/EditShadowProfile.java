@@ -15,7 +15,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
     EditText editFirstName, editLastName, editPhone, editEmail, editDesc;
     Button btnSave, btnBack;
-    String shadowFirstName, shadowLastName, shadowPhone, shadowEmail, shadowDesc;
+    String shadowId, shadowFirstName, shadowLastName, shadowPhone, shadowEmail, shadowDesc;
     DatabaseReference reference;
 
     @Override
@@ -25,6 +25,9 @@ public class EditShadowProfile extends AppCompatActivity {
 
         // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("shadows");
+
+        Intent intent = new Intent();
+        shadowId = intent.getStringExtra("id");
 
         editFirstName = findViewById(R.id.eTxtProfileShadowFirstName);
         editLastName = findViewById(R.id.eTxtProfileShadowLastName);
@@ -51,13 +54,14 @@ public class EditShadowProfile extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
 
-            Intent intent = new Intent(EditShadowProfile.this, ShadowProfile.class);
-            intent.putExtra("fName", shadowFirstName);
-            intent.putExtra("lName", shadowLastName);
-            intent.putExtra("phone", shadowPhone);
-            intent.putExtra("email", shadowEmail);
-            intent.putExtra("desc", shadowDesc);
-            startActivity(intent);
+            Intent intent1 = new Intent(EditShadowProfile.this, ShadowProfile.class);
+            intent1.putExtra("id", shadowId);
+            intent1.putExtra("fName", shadowFirstName);
+            intent1.putExtra("lName", shadowLastName);
+            intent1.putExtra("phone", shadowPhone);
+            intent1.putExtra("email", shadowEmail);
+            intent1.putExtra("desc", shadowDesc);
+            startActivity(intent1);
 
         });
     }

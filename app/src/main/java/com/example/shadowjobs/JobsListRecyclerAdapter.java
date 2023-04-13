@@ -21,7 +21,7 @@ public class JobsListRecyclerAdapter extends RecyclerView.Adapter<JobsListRecycl
         return new MyViewHolder(view);
     }
 
-    public JobsListRecyclerAdapter(ArrayList<J>)
+    //public JobsListRecyclerAdapter(ArrayList<J>)
 
     @Override
     public void onBindViewHolder(@NonNull JobsListRecyclerAdapter.MyViewHolder holder, int position) {

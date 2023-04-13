@@ -46,7 +46,7 @@ public class JobsActivity extends AppCompatActivity {
                         jobList.add(ds.getValue(Job.class));
                     }
 
-                    jobAdapter = new JobsListRecyclerAdapter(jobList);
+                    //jobAdapter = new JobsListRecyclerAdapter(jobList);
                 }
             }
         });
