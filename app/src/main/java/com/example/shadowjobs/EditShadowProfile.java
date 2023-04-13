@@ -15,7 +15,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
     EditText editFirstName, editLastName, editPhone, editEmail, editDesc;
     Button btnSave, btnBack;
-    String shadowFirstName, shadowLastName, shadowPhone, shadowEmail, shadowDesc;
+    String shadowId, shadowFirstName, shadowLastName, shadowPhone, shadowEmail, shadowDesc;
     DatabaseReference reference;
 
     @Override
@@ -25,6 +25,9 @@ public class EditShadowProfile extends AppCompatActivity {
 
         // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("shadows");
+
+        Intent intent = new Intent();
+        shadowId = intent.getStringExtra("id");
 
         editFirstName = findViewById(R.id.eTxtProfileShadowFirstName);
         editLastName = findViewById(R.id.eTxtProfileShadowLastName);
@@ -51,13 +54,14 @@ public class EditShadowProfile extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
 
-            Intent intent = new Intent(EditShadowProfile.this, ShadowProfile.class);
-            intent.putExtra("fName", shadowFirstName);
-            intent.putExtra("lName", shadowLastName);
-            intent.putExtra("phone", shadowPhone);
-            intent.putExtra("email", shadowEmail);
-            intent.putExtra("desc", shadowDesc);
-            startActivity(intent);
+            Intent backToProfile = new Intent(EditShadowProfile.this, ShadowProfile.class);
+            backToProfile.putExtra("id", shadowId);
+            backToProfile.putExtra("fName", shadowFirstName);
+            backToProfile.putExtra("lName", shadowLastName);
+            backToProfile.putExtra("phone", shadowPhone);
+            backToProfile.putExtra("email", shadowEmail);
+            backToProfile.putExtra("desc", shadowDesc);
+            startActivity(backToProfile);
 
         });
     }
@@ -83,7 +87,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
         if(!shadowFirstName.equals(editFirstName.getText().toString())){
 
-            reference.child("???").child("fName").setValue(editFirstName.getText().toString());
+            reference.child(shadowId).child("fName").setValue(editFirstName.getText().toString());
             shadowFirstName = editFirstName.getText().toString();
             return true;
 
@@ -99,7 +103,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
         if(!shadowLastName.equals(editLastName.getText().toString())){
 
-            reference.child("???").child("lName").setValue(editLastName.getText().toString());
+            reference.child(shadowId).child("lName").setValue(editLastName.getText().toString());
             shadowLastName = editLastName.getText().toString();
             return true;
 
@@ -115,7 +119,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
         if(!shadowPhone.equals(editPhone.getText().toString())){
 
-            reference.child("???").child("phone").setValue(editPhone.getText().toString());
+            reference.child(shadowId).child("phone").setValue(editPhone.getText().toString());
             shadowPhone = editPhone.getText().toString();
             return true;
 
@@ -131,7 +135,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
         if(!shadowEmail.equals(editEmail.getText().toString())){
 
-            reference.child("???").child("email").setValue(editEmail.getText().toString());
+            reference.child(shadowId).child("email").setValue(editEmail.getText().toString());
             shadowEmail = editEmail.getText().toString();
             return true;
 
@@ -147,7 +151,7 @@ public class EditShadowProfile extends AppCompatActivity {
 
         if(!shadowDesc.equals(editDesc.getText().toString())){
 
-            reference.child("???").child("desc").setValue(editDesc.getText().toString());
+            reference.child(shadowId).child("desc").setValue(editDesc.getText().toString());
             shadowDesc = editDesc.getText().toString();
             return true;
 

@@ -15,7 +15,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
     EditText editRestoName, editRestoAddress, editRestoPhone, editRestoEmail, editRestoWebsite, editRestoDesc;
     Button btnSave, btnBack;
-    String restoName, restoAddress, restoPhone, restoEmail, restoWebsite, restoDesc;
+    String restoId, restoName, restoAddress, restoPhone, restoEmail, restoWebsite, restoDesc;
     DatabaseReference reference;
 
     @Override
@@ -25,6 +25,9 @@ public class EditRestoProfile extends AppCompatActivity {
 
         // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("restaurants");
+
+        Intent intent = new Intent();
+        restoId = intent.getStringExtra("id");
 
         editRestoName = findViewById(R.id.eTxtRestoName);
         editRestoAddress = findViewById(R.id.eTxtRestoAddress);
@@ -52,14 +55,15 @@ public class EditRestoProfile extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
 
-            Intent intent = new Intent(EditRestoProfile.this, RestoProfile.class);
-            intent.putExtra("name", restoName);
-            intent.putExtra("address", restoAddress);
-            intent.putExtra("phone", restoPhone);
-            intent.putExtra("email", restoEmail);
-            intent.putExtra("website", restoWebsite);
-            intent.putExtra("desc", restoDesc);
-            startActivity(intent);
+            Intent backToProfile = new Intent(EditRestoProfile.this, RestoProfile.class);
+            backToProfile.putExtra("id", restoId);
+            backToProfile.putExtra("name", restoName);
+            backToProfile.putExtra("address", restoAddress);
+            backToProfile.putExtra("phone", restoPhone);
+            backToProfile.putExtra("email", restoEmail);
+            backToProfile.putExtra("website", restoWebsite);
+            backToProfile.putExtra("desc", restoDesc);
+            startActivity(backToProfile);
 
         });
     }
@@ -87,7 +91,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoName.equals(editRestoName.getText().toString())){
 
-            reference.child("???").child("name").setValue(editRestoName.getText().toString());
+            reference.child(restoId).child("name").setValue(editRestoName.getText().toString());
             restoName = editRestoName.getText().toString();
             return true;
 
@@ -103,7 +107,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoAddress.equals(editRestoAddress.getText().toString())){
 
-            reference.child("???").child("address").setValue(editRestoAddress.getText().toString());
+            reference.child(restoId).child("address").setValue(editRestoAddress.getText().toString());
             restoAddress = editRestoAddress.getText().toString();
             return true;
 
@@ -119,7 +123,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoPhone.equals(editRestoPhone.getText().toString())){
 
-            reference.child("???").child("phone").setValue(editRestoPhone.getText().toString());
+            reference.child(restoId).child("phone").setValue(editRestoPhone.getText().toString());
             restoPhone = editRestoPhone.getText().toString();
             return true;
 
@@ -135,7 +139,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoEmail.equals(editRestoEmail.getText().toString())){
 
-            reference.child("???").child("email").setValue(editRestoEmail.getText().toString());
+            reference.child(restoId).child("email").setValue(editRestoEmail.getText().toString());
             restoEmail = editRestoEmail.getText().toString();
             return true;
 
@@ -151,7 +155,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoWebsite.equals(editRestoWebsite.getText().toString())){
 
-            reference.child("???").child("website").setValue(editRestoWebsite.getText().toString());
+            reference.child(restoId).child("website").setValue(editRestoWebsite.getText().toString());
             restoWebsite = editRestoWebsite.getText().toString();
             return true;
 
@@ -167,7 +171,7 @@ public class EditRestoProfile extends AppCompatActivity {
 
         if(!restoDesc.equals(editRestoDesc.getText().toString())){
 
-            reference.child("???").child("desc").setValue(editRestoDesc.getText().toString());
+            reference.child(restoId).child("desc").setValue(editRestoDesc.getText().toString());
             restoDesc = editRestoDesc.getText().toString();
             return true;
 

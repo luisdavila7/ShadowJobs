@@ -4,7 +4,7 @@ public class shadowModel {
 
     String fName, lName, phone, email, desc;
 
-    public shadowModel(String fName, String lName, String  phone, String  email, String  desc){
+    public shadowModel(String id, String fName, String lName, String  phone, String  email, String  desc){
 
         this.fName = fName;
         this.lName = lName;

@@ -1,20 +1,32 @@
 package com.example.shadowjobs;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin, btnSignUp, btnForgotPass;
     EditText username, password;
     RadioButton radioShadow, radioRestaurant;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,29 +41,15 @@ public class LoginActivity extends AppCompatActivity {
         radioShadow = findViewById(R.id.rBtnShadows);
         radioRestaurant = findViewById(R.id.rBtnRestaurants);
 
-        btnLogin.setOnClickListener(view -> {
-
-            //Check on which activity to send the user when login
-            if(radioShadow.isChecked() && validUserName() && validPass()){
-
-                //Get Shadow info and send to ShadowProfile activity
-
-            } else if (radioRestaurant.isChecked() && validUserName() && validPass()){
-
-                //Get Restaurant info and send to RestoProfile activity
-
-            } else {
-
-                Toast.makeText(LoginActivity.this, "Please select a type of user to login", Toast.LENGTH_SHORT).show();
-
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkUser();
             }
-
         });
 
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterAs.class)));
-
     }
-
     public Boolean validUserName() {
         String val = username.getText().toString();
         if (val.isEmpty()) {
@@ -71,6 +69,53 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             return true;
         }
+    }
+
+    public void checkUser(){
+        String userUserName = username.getText().toString().trim();
+        String userPassword = password.getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+
+        Query checkUserDatabase;
+
+        if (radioShadow.isChecked()){
+            checkUserDatabase = reference.orderByChild("shadows").equalTo(userUserName);
+        }else{
+            checkUserDatabase = reference.orderByChild("restaurants").equalTo(userUserName);
+        }
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    username.setError(null);
+                    String passformData = snapshot.child(userUserName).child("password").getValue(String.class);
+
+                    if (passformData.equals(userPassword)){
+
+                        //
+                        Toast.makeText(LoginActivity.this, "happy", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this,ShadowProfile.class));
+                    }
+                    else{
+                        password.setError("Invalid credentinal");
+                        password.requestFocus();
+                    }
+
+
+                }
+                else{
+                    password.setError("Invalid credentinal");
+                    password.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
 

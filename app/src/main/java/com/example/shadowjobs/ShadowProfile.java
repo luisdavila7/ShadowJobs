@@ -3,15 +3,23 @@
  import android.content.Intent;
  import android.graphics.Color;
  import android.os.Bundle;
+ import android.view.View;
  import android.widget.Button;
  import android.widget.TextView;
 
+ import androidx.annotation.NonNull;
  import androidx.appcompat.app.AppCompatActivity;
 
  import com.github.mikephil.charting.charts.BarChart;
  import com.github.mikephil.charting.data.BarData;
  import com.github.mikephil.charting.data.BarDataSet;
  import com.github.mikephil.charting.data.BarEntry;
+ import com.google.firebase.database.DataSnapshot;
+ import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.Query;
+ import com.google.firebase.database.ValueEventListener;
 
  import java.util.ArrayList;
 
@@ -22,6 +30,8 @@
     BarDataSet barDataSet;
     ArrayList barEntriesArrayList;
 
+    String id;
+
     Button btnEdit;
     TextView fName, lName, phone, email, desc;
 
@@ -29,6 +39,8 @@
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shadow_profile);
+
+        Intent intent = new Intent();
 
         barChart =  findViewById(R.id.BarChart);
         getBarEntries();
@@ -39,15 +51,16 @@
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
+        id = intent.getStringExtra("id");
 
         btnEdit = findViewById(R.id.btnEditShadow);
 
-        showUserData();
-        btnEdit.setOnClickListener(v -> startActivity(new Intent(ShadowProfile.this, EditShadowProfile.class)));
+        showShadowData();
+        btnEdit.setOnClickListener(v -> passData());
 
     }
 
-    public void showUserData(){
+    public void showShadowData(){
 
         Intent intent = getIntent();
         String userFName = intent.getStringExtra("fName");
@@ -61,6 +74,40 @@
         phone.setText(userPhone);
         email.setText(userEmail);
         desc.setText(userDesc);
+
+     }
+
+     public void passData(){
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("shadows");
+        Query checkShadowDatabase = reference.orderByChild("id").equalTo(id);
+        checkShadowDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String fNameDb = snapshot.child(id).child("fName").getValue(String.class);
+                    String lNameDb = snapshot.child(id).child("lName").getValue(String.class);
+                    String phoneDb = snapshot.child(id).child("phone").getValue(String.class);
+                    String emailDb = snapshot.child(id).child("email").getValue(String.class);
+                    String descDb = snapshot.child(id).child("desc").getValue(String.class);
+
+                    Intent intent = new Intent(ShadowProfile.this, EditShadowProfile.class);
+                    intent.putExtra("id", id);
+                    intent.putExtra("fName", fNameDb);
+                    intent.putExtra("lName", lNameDb);
+                    intent.putExtra("phone", phoneDb);
+                    intent.putExtra("email", emailDb);
+                    intent.putExtra("desc", descDb);
+                    startActivity(intent);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
      }
 

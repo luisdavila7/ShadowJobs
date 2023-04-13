@@ -2,16 +2,15 @@ package com.example.shadowjobs.model;
 
 public class restoModel {
 
-    String name, address, phone, email, website, desc;
+    String name, address, phone, email, password;
 
-    public restoModel(String name, String address, String phone, String email, String website, String desc){
+    public restoModel(String name, String email, String password, String address, String phone){
 
         this.name = name;
         this.address = address;
-        this.phone = phone;
+        this.password = password;
         this.email = email;
-        this.website = website;
-        this.desc = desc;
+        this.phone = phone;
 
     }
 
@@ -49,11 +48,4 @@ public class restoModel {
         this.email = email;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 }

@@ -48,11 +48,10 @@
 
     <EditText
         android:id="@+id/eTxtRestoName"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
@@ -73,14 +72,11 @@
 
     <EditText
         android:id="@+id/eTxtRestoAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/eTxtRestoName"
         tools:ignore="MissingConstraints" />
@@ -100,15 +96,11 @@
 
     <EditText
         android:id="@+id/eTxtRestoPhone"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
         android:ems="10"
-        android:inputType="textLongMessage"
-        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/eTxtRestoAddress"
         tools:ignore="MissingConstraints" />
@@ -128,14 +120,11 @@
 
     <EditText
         android:id="@+id/eTxtRestoEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/eTxtRestoPhone"
         tools:ignore="MissingConstraints" />
@@ -155,16 +144,12 @@
 
     <EditText
         android:id="@+id/eTxtRestoWebsite"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="textLongMessage"
-        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/eTxtRestoEmail"
         tools:ignore="MissingConstraints" />
 
@@ -183,12 +168,11 @@
 
     <EditText
         android:id="@+id/eTxtRestoDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="93dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/eTxtRestoWebsite"
         tools:ignore="MissingConstraints" />
