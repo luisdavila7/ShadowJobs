@@ -1,4 +1,4 @@
-package com.example.shadowjobs.data.model;
+package com.example.shadowjobs.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

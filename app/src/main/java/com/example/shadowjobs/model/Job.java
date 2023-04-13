@@ -1,4 +1,4 @@
-package com.example.shadowjobs.data.model;
+package com.example.shadowjobs.model;
 
 public class Job {
     private String jobId;
