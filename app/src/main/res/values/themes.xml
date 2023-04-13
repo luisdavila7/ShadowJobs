@@ -8,8 +8,8 @@
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@android:color/system_accent1_900</item>
-        <item name="colorSecondaryVariant">@android:color/system_accent1_800</item>
+        <item name="colorSecondary">@color/blue_ldark1</item>
+        <item name="colorSecondaryVariant">@color/blue_dark2</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
