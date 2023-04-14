@@ -53,7 +53,7 @@ public class ShadowRegistration extends AppCompatActivity {
                 String add_ress = address.getText().toString();
                 String pho_ne = phone.getText().toString();
 
-                shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,add_ress,pho_ne);
+                shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,pho_ne);
 
                 reference.child(ID).setValue(user);
 

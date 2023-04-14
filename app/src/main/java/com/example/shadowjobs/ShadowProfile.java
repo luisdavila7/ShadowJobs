@@ -58,7 +58,6 @@
         phone = findViewById(R.id.txtMobile);
         email = findViewById(R.id.txtEmail);
         desc = findViewById(R.id.shadowDesc);
-        address = findViewById(R.id.textView8);
 
         btnEdit = findViewById(R.id.btnEditShadow);
 
