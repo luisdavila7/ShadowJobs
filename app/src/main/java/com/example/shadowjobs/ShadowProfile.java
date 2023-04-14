@@ -125,13 +125,13 @@
 
         barEntriesArrayList = new ArrayList<>();
 
-        barEntriesArrayList.add(new BarEntry(1f, 0));
-        barEntriesArrayList.add(new BarEntry(1f, 8));
-        barEntriesArrayList.add(new BarEntry(1f, 0));
-        barEntriesArrayList.add(new BarEntry(1f, 4));
-        barEntriesArrayList.add(new BarEntry(1f, 3));
-        barEntriesArrayList.add(new BarEntry(1f, 6));
-        barEntriesArrayList.add(new BarEntry(1f, 5));
+        barEntriesArrayList.add(new BarEntry(0, 0));
+        barEntriesArrayList.add(new BarEntry(1, 8));
+        barEntriesArrayList.add(new BarEntry(2, 0));
+        barEntriesArrayList.add(new BarEntry(3, 4));
+        barEntriesArrayList.add(new BarEntry(4, 3));
+        barEntriesArrayList.add(new BarEntry(5, 6));
+        barEntriesArrayList.add(new BarEntry(6, 5));
 
     }
 }
