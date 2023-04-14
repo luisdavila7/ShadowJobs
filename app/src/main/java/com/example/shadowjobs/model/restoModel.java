@@ -2,10 +2,10 @@ package com.example.shadowjobs.model;
 
 public class restoModel {
 
-    String name, address, phone, email, password;
+    String id, name, address, phone, email, password;
 
-    public restoModel(String name, String email, String password, String address, String phone){
-
+    public restoModel(String id, String name, String email, String password, String address, String phone) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.password = password;
@@ -14,7 +14,16 @@ public class restoModel {
 
     }
 
-    restoModel(){}
+    restoModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -48,4 +57,11 @@ public class restoModel {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

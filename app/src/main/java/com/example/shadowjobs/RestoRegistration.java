@@ -44,15 +44,18 @@ public class RestoRegistration extends AppCompatActivity {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("restaurants");
 
+                UUID uuid = UUID.randomUUID();
+                String ID = uuid.toString();
+
                 String busi_ness = business.getText().toString();
                 String e_mail = email.getText().toString();
                 String password = pass.getText().toString();
                 String add_ress = address.getText().toString();
                 String pho_ne = phone.getText().toString();
 
-                restoModel user = new restoModel(busi_ness,e_mail,password,add_ress,pho_ne);
+                restoModel user = new restoModel(ID,busi_ness,e_mail,password,add_ress,pho_ne);
 
-                reference.child(e_mail).setValue(user);
+                reference.child(ID).setValue(user);
 
                 Toast.makeText(RestoRegistration.this, "The Restaurant User created successfully.", Toast.LENGTH_SHORT).show();
             }

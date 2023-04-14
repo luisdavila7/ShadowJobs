@@ -43,6 +43,9 @@ public class ShadowRegistration extends AppCompatActivity {
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("shadows");
 
+                UUID uuid = UUID.randomUUID();
+                String ID = uuid.toString();
+
                 String f_name = fname.getText().toString();
                 String l_name = lname.getText().toString();
                 String e_mail = email.getText().toString();
@@ -50,9 +53,9 @@ public class ShadowRegistration extends AppCompatActivity {
                 String add_ress = address.getText().toString();
                 String pho_ne = phone.getText().toString();
 
-                shadowModel user = new shadowModel(f_name,l_name,e_mail,password,add_ress,pho_ne);
+                shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,add_ress,pho_ne);
 
-                reference.child(e_mail).setValue(user);
+                reference.child(ID).setValue(user);
 
                 Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
             }

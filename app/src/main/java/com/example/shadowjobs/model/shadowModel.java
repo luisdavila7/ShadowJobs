@@ -2,19 +2,28 @@ package com.example.shadowjobs.model;
 
 public class shadowModel {
 
-    String fName, lName, phone, email, desc;
+    String id, fName, lName, phone, email, password, address;
 
-    public shadowModel(String id, String fName, String lName, String  phone, String  email, String  desc){
-
+    public shadowModel(String id, String fName, String lName, String email, String password, String address, String phone) {
+        this.id = id;
         this.fName = fName;
         this.lName = lName;
-        this.phone = phone;
         this.email = email;
-        this.desc = desc;
-
+        this.phone = phone;
+        this.address = address;
+        this.password = password;
     }
 
-    public shadowModel(){}
+    public shadowModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getfName() {
         return fName;
@@ -48,11 +57,19 @@ public class shadowModel {
         this.email = email;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

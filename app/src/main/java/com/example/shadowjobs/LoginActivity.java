@@ -14,6 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.shadowjobs.model.Job;
+import com.example.shadowjobs.model.restoModel;
+import com.example.shadowjobs.model.shadowModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,93 +79,51 @@ public class LoginActivity extends AppCompatActivity {
     public void checkUser(){
         String userUserName = username.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference reference;
 
         Query checkUserDatabase;
 
         if (radioShadow.isChecked()){
-            checkUserDatabase = reference.orderByChild("shadows").equalTo(userUserName);
-        }else{
-            checkUserDatabase = reference.orderByChild("restaurants").equalTo(userUserName);
-        }
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    username.setError(null);
-                    String passformData = snapshot.child(userUserName).child("password").getValue(String.class);
-
-                    if (passformData.equals(userPassword)){
-
-                        //
-                        Toast.makeText(LoginActivity.this, "happy", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this,ShadowProfile.class));
+            reference = FirebaseDatabase.getInstance().getReference("shadows");
+            reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (DataSnapshot ds : task.getResult().getChildren()){
+                            shadowModel user = ds.getValue(shadowModel.class);
+                            if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)){
+                                startActivity(new Intent(LoginActivity.this, ShadowProfile.class));
+                            }
+                        }
+                        Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        password.setError("Invalid credentinal");
-                        password.requestFocus();
+                        Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
-                else{
-                    password.setError("Invalid credentinal");
-                    password.requestFocus();
+            });
+        }else{
+            reference = FirebaseDatabase.getInstance().getReference("restaurants");
+            reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (DataSnapshot ds : task.getResult().getChildren()) {
+
+                            restoModel user = ds.getValue(restoModel.class);
+                            Toast.makeText(LoginActivity.this, user.getEmail() + user.getPassword(), Toast.LENGTH_SHORT).show();
+                            if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
+                                Toast.makeText(LoginActivity.this, userUserName, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this, RestoProfile.class));
+                            }
+                        }
+                    }
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+            });
+        }
 
     }
 }
 
-//    public void checkUser(){
-//        String userUserName = username.getText().toString().trim();
-//        String userPassword = password.getText().toString().trim();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-//        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUserName);
-//        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()){
-//                    username.setError(null);
-//                    String passformData = snapshot.child(userUserName).child("password").getValue(String.class);
-//                    if (passformData.equals(userPassword)){
-//                        String usernamedb = snapshot.child(userUserName).child("username").getValue(String.class);
-//                        String nameDB = snapshot.child(userUserName).child("name").getValue(String.class);
-//                        String emailDb = snapshot.child(userUserName).child("email").getValue(String.class);
-//                        String passdb = snapshot.child(userUserName).child("password").getValue(String.class);
-//
-//                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-//                        intent.putExtra("name",nameDB);
-//                        intent.putExtra("email",emailDb);
-//                        intent.putExtra("username",usernamedb);
-//                        intent.putExtra("password",passdb);
-//
-//                        Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-//                        startActivity(intent);
-//                    }
-//                    else{
-//                        password.setError("Invalid credentinal");
-//                        password.requestFocus();
-//                    }
-//
-//
-//                }
-//                else{
-//                    password.setError("Invalid credentinal");
-//                    password.requestFocus();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
 
