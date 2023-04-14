@@ -33,14 +33,14 @@
     String id;
 
     Button btnEdit;
-    TextView fName, lName, phone, email, desc;
+    TextView fName, lName, phone, email, desc, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shadow_profile);
 
-        Intent intent = new Intent();
+
 
         barChart =  findViewById(R.id.BarChart);
         getBarEntries();
@@ -51,7 +51,14 @@
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
-        id = intent.getStringExtra("id");
+        //intent = getIntent();
+
+        fName = findViewById(R.id.txtFirstName);
+        lName = findViewById(R.id.txtLastName);
+        phone = findViewById(R.id.txtMobile);
+        email = findViewById(R.id.txtEmail);
+        desc = findViewById(R.id.shadowDesc);
+        address = findViewById(R.id.textView8);
 
         btnEdit = findViewById(R.id.btnEditShadow);
 
@@ -61,19 +68,22 @@
     }
 
     public void showShadowData(){
-
         Intent intent = getIntent();
+        id = intent.getStringExtra("id");
         String userFName = intent.getStringExtra("fName");
         String userLName = intent.getStringExtra("lName");
         String userPhone = intent.getStringExtra("phone");
         String userEmail = intent.getStringExtra("email");
-        String userDesc = intent.getStringExtra("desc");
+        String userDesc = intent.getStringExtra("password");
+        String userAddress = intent.getStringExtra("address");
 
         fName.setText(userFName);
         lName.setText(userLName);
         phone.setText(userPhone);
         email.setText(userEmail);
         desc.setText(userDesc);
+        address.setText(userAddress);
+
 
      }
 
@@ -89,7 +99,7 @@
                     String lNameDb = snapshot.child(id).child("lName").getValue(String.class);
                     String phoneDb = snapshot.child(id).child("phone").getValue(String.class);
                     String emailDb = snapshot.child(id).child("email").getValue(String.class);
-                    String descDb = snapshot.child(id).child("desc").getValue(String.class);
+                    String descDb = snapshot.child(id).child("address").getValue(String.class);
 
                     Intent intent = new Intent(ShadowProfile.this, EditShadowProfile.class);
                     intent.putExtra("id", id);
@@ -97,7 +107,7 @@
                     intent.putExtra("lName", lNameDb);
                     intent.putExtra("phone", phoneDb);
                     intent.putExtra("email", emailDb);
-                    intent.putExtra("desc", descDb);
+                    intent.putExtra("address", descDb);
                     startActivity(intent);
 
                 }

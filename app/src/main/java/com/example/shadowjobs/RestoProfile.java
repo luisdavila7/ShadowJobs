@@ -65,15 +65,15 @@ public class RestoProfile extends AppCompatActivity {
         String restoAddress = intent.getStringExtra("address");
         String restoPhone = intent.getStringExtra("phone");
         String restoEmail = intent.getStringExtra("email");
-        String restoWebsite = intent.getStringExtra("website");
-        String restoDesc = intent.getStringExtra("desc");
+//        String restoWebsite = intent.getStringExtra("website");
+//        String restoDesc = intent.getStringExtra("desc");
 
         name.setText(restoName);
         address.setText(restoAddress);
         phone.setText(restoPhone);
         email.setText(restoEmail);
-        website.setText(restoWebsite);
-        desc.setText(restoDesc);
+//        website.setText(restoWebsite);
+//        desc.setText(restoDesc);
 
     }
 

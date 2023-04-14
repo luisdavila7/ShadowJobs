@@ -92,13 +92,22 @@ public class LoginActivity extends AppCompatActivity {
                         for (DataSnapshot ds : task.getResult().getChildren()){
                             shadowModel user = ds.getValue(shadowModel.class);
                             if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)){
-                                startActivity(new Intent(LoginActivity.this, ShadowProfile.class));
+                                Toast.makeText(LoginActivity.this, userUserName+" "+userPassword, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
+                                intent.putExtra("id", user.getId());
+                                intent.putExtra("fName", user.getfName());
+                                intent.putExtra("lName", user.getlName());
+                                intent.putExtra("phone", user.getPhone());
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("password", user.getPassword());
+                                intent.putExtra("address", user.getAddress());
+                                startActivity(intent);
                             }
                         }
-                        Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, "The User and Password are incorrect.1", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "The User and Password are incorrect.2", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -111,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         for (DataSnapshot ds : task.getResult().getChildren()) {
 
                             restoModel user = ds.getValue(restoModel.class);
-                            Toast.makeText(LoginActivity.this, user.getEmail() + user.getPassword(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginActivity.this, user.getEmail() + user.getPassword(), Toast.LENGTH_SHORT).show();
                             if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
                                 Toast.makeText(LoginActivity.this, userUserName, Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LoginActivity.this, RestoProfile.class));
