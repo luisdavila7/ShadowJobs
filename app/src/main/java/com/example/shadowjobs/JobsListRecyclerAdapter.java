@@ -48,4 +48,18 @@ public class JobsListRecyclerAdapter extends RecyclerView.Adapter<JobsListRecycl
         }
 
     }
+
+    public ArrayList<Job> getData(){
+        return jobList;
+    }
+
+    public void removeItem(int pos){
+        jobList.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    public void restoreItem(Job job,int pos){
+        jobList.add(pos,job);
+        notifyItemInserted(pos);
+    }
 }
