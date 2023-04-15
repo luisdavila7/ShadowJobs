@@ -14,6 +14,14 @@ public class shadowModel {
         this.desc = "";
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public shadowModel() {
     }
 

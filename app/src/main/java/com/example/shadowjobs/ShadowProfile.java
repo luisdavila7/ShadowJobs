@@ -23,7 +23,7 @@
 
  import java.util.ArrayList;
 
- public class ShadowProfile extends AppCompatActivity {/**/
+ public class ShadowProfile extends AppCompatActivity {
 
     BarChart barChart;
     BarData barData;
@@ -40,8 +40,6 @@
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shadow_profile);
 
-
-
         barChart =  findViewById(R.id.BarChart);
         getBarEntries();
         barDataSet = new BarDataSet(barEntriesArrayList, "");
@@ -51,7 +49,6 @@
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
-        //intent = getIntent();
 
         fName = findViewById(R.id.txtFirstName);
         lName = findViewById(R.id.txtLastName);
@@ -73,16 +70,13 @@
         String userLName = intent.getStringExtra("lName");
         String userPhone = intent.getStringExtra("phone");
         String userEmail = intent.getStringExtra("email");
-        String userDesc = intent.getStringExtra("password");
-        String userAddress = intent.getStringExtra("address");
+        String userDesc = intent.getStringExtra("desc");
 
         fName.setText(userFName);
         lName.setText(userLName);
         phone.setText(userPhone);
         email.setText(userEmail);
         desc.setText(userDesc);
-        address.setText(userAddress);
-
 
      }
 
