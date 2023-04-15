@@ -23,9 +23,7 @@ public class EditShadowProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_shadow_profile);
 
-        // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("shadows");
-
 
         editFirstName = findViewById(R.id.eTxtProfileShadowFirstName);
         editLastName = findViewById(R.id.eTxtProfileShadowLastName);

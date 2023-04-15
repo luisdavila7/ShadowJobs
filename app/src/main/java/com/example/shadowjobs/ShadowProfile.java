@@ -33,7 +33,7 @@
     String id;
 
     Button btnEdit;
-    TextView fName, lName, phone, email, desc, address;
+    TextView fName, lName, phone, email, desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@
                     String lNameDb = snapshot.child(id).child("lName").getValue(String.class);
                     String phoneDb = snapshot.child(id).child("phone").getValue(String.class);
                     String emailDb = snapshot.child(id).child("email").getValue(String.class);
-                    String descDb = snapshot.child(id).child("address").getValue(String.class);
+                    String descDb = snapshot.child(id).child("desc").getValue(String.class);
 
                     Intent intent = new Intent(ShadowProfile.this, EditShadowProfile.class);
                     intent.putExtra("id", id);
@@ -101,7 +101,7 @@
                     intent.putExtra("lName", lNameDb);
                     intent.putExtra("phone", phoneDb);
                     intent.putExtra("email", emailDb);
-                    intent.putExtra("address", descDb);
+                    intent.putExtra("desc", descDb);
                     startActivity(intent);
 
                 }
