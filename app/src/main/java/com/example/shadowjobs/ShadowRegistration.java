@@ -19,7 +19,7 @@ import java.util.UUID;
 public class ShadowRegistration extends AppCompatActivity {
 
     Button btnCancel, btnCreate;
-    EditText fname, lname, email, pass, address, phone;
+    EditText fname, lname, email, pass, phone;
     FirebaseDatabase database;
     DatabaseReference reference;
     @Override
@@ -31,49 +31,34 @@ public class ShadowRegistration extends AppCompatActivity {
         lname = findViewById(R.id.lname);
         email = findViewById(R.id.email);
         pass = findViewById(R.id.password);
-        address = findViewById(R.id.address);
         phone = findViewById(R.id.phone);
 
         btnCreate = findViewById(R.id.button);
         btnCancel = findViewById(R.id.btnCancel);
 
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("shadows");
+        btnCreate.setOnClickListener(view -> {
+            database = FirebaseDatabase.getInstance();
+            reference = database.getReference("shadows");
 
-                UUID uuid = UUID.randomUUID();
-                String ID = uuid.toString();
+            UUID uuid = UUID.randomUUID();
+            String ID = uuid.toString();
 
-                String f_name = fname.getText().toString();
-                String l_name = lname.getText().toString();
-                String e_mail = email.getText().toString();
-                String password = pass.getText().toString();
-                String add_ress = address.getText().toString();
-                String pho_ne = phone.getText().toString();
+            String f_name = fname.getText().toString();
+            String l_name = lname.getText().toString();
+            String e_mail = email.getText().toString();
+            String password = pass.getText().toString();
+            String pho_ne = phone.getText().toString();
 
-                shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,pho_ne);
+            shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,pho_ne);
 
-                reference.child(ID).setValue(user);
+            reference.child(ID).setValue(user);
 
-                Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(ShadowRegistration.this, LoginActivity.class));
+
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent BackMenu = new Intent(ShadowRegistration.this, LoginActivity.class);
-                startActivity(BackMenu);
-            }
-        });
-
-
-
+        btnCancel.setOnClickListener(v -> startActivity(new Intent(ShadowRegistration.this, LoginActivity.class)));
 
     }
-
-
-
 }

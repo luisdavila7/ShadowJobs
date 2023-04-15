@@ -26,8 +26,6 @@ public class EditShadowProfile extends AppCompatActivity {
         // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("shadows");
 
-        Intent intent = new Intent();
-        shadowId = intent.getStringExtra("id");
 
         editFirstName = findViewById(R.id.eTxtProfileShadowFirstName);
         editLastName = findViewById(R.id.eTxtProfileShadowLastName);
@@ -69,6 +67,7 @@ public class EditShadowProfile extends AppCompatActivity {
     public void showData(){
 
         Intent intent = getIntent();
+        shadowId = intent.getStringExtra("id");
         shadowFirstName = intent.getStringExtra("fName");
         shadowLastName = intent.getStringExtra("lName");
         shadowPhone = intent.getStringExtra("phone");

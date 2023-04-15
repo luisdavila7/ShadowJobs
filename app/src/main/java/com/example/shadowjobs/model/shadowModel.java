@@ -14,13 +14,7 @@ public class shadowModel {
         this.desc = "";
     }
 
-    public String getDesc() {
-        return desc;
-    }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     public shadowModel() {
     }
@@ -71,6 +65,14 @@ public class shadowModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
 }
