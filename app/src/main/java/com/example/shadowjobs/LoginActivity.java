@@ -1,30 +1,20 @@
 package com.example.shadowjobs;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
-import com.example.shadowjobs.model.Job;
 import com.example.shadowjobs.model.restoModel;
 import com.example.shadowjobs.model.shadowModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.login);
@@ -50,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterAs.class)));
     }
+
+
     public Boolean validUserName() {
         String val = username.getText().toString();
         if (val.isEmpty()) {
@@ -83,36 +76,51 @@ public class LoginActivity extends AppCompatActivity {
                         shadowModel user = ds.getValue(shadowModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)){
                             Toast.makeText(LoginActivity.this, userUserName+" "+userPassword, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
-                            intent.putExtra("id", user.getId());
-                            intent.putExtra("fName", user.getfName());
-                            intent.putExtra("lName", user.getlName());
-                            intent.putExtra("phone", user.getPhone());
-                            intent.putExtra("email", user.getEmail());
-                            intent.putExtra("password", user.getPassword());
-                            intent.putExtra("desc", user.getDesc());
-                            startActivity(intent);
+                            Intent intentShadow = new Intent(LoginActivity.this, ShadowProfile.class);
+
+                            intentShadow.putExtra("id", user.getId());
+                            intentShadow.putExtra("fName", user.getfName());
+                            intentShadow.putExtra("lName", user.getlName());
+                            intentShadow.putExtra("phone", user.getPhone());
+                            intentShadow.putExtra("email", user.getEmail());
+                            intentShadow.putExtra("password", user.getPassword());
+                            intentShadow.putExtra("desc", user.getDesc());
+
+                            Toast.makeText(LoginActivity.this, "Im here Shadow Login", Toast.LENGTH_SHORT).show();
+
+                            startActivity(intentShadow);
                         }
                     }
                 }
-                else{
-                    Toast.makeText(LoginActivity.this, "The User and Password are incorrect.2", Toast.LENGTH_SHORT).show();
-                }
+
             });
-        }else{
+        } else if (radioRestaurant.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("restaurants");
             reference.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     for (DataSnapshot ds : task.getResult().getChildren()) {
-
                         restoModel user = ds.getValue(restoModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
                             Toast.makeText(LoginActivity.this, userUserName, Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, RestoProfile.class));
+
+                            Intent intentResto = new Intent(LoginActivity.this, RestoProfile.class);
+                            intentResto.putExtra("id", user.getId());
+                            intentResto.putExtra("name", user.getName());
+                            intentResto.putExtra("address", user.getAddress());
+                            intentResto.putExtra("phone", user.getPhone());
+                            intentResto.putExtra("email", user.getEmail());
+                            intentResto.putExtra("password", user.getPassword());
+                            intentResto.putExtra("bio", user.getBio());
+
+                            Toast.makeText(LoginActivity.this, "Im here Restaurant Login", Toast.LENGTH_SHORT).show();
+                            startActivity(intentResto);
                         }
                     }
                 }
             });
+
+        } else{
+            Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
         }
     }
 }

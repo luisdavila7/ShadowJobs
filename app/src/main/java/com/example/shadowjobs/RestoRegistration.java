@@ -10,8 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shadowjobs.model.restoModel;
-import com.example.shadowjobs.model.shadowModel;
-import com.example.shadowjobs.model.restoModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,7 +18,7 @@ import java.util.UUID;
 public class RestoRegistration extends AppCompatActivity {
 
     Button btnCancel, btnCreate;
-    EditText business, email, pass, address, phone;
+    EditText business, email, pass, address, phone, bio;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -34,6 +32,7 @@ public class RestoRegistration extends AppCompatActivity {
         pass = findViewById(R.id.password);
         address = findViewById(R.id.address);
         phone = findViewById(R.id.phone);
+        bio = findViewById(R.id.bio);
 
         btnCreate = findViewById(R.id.button);
         btnCancel = findViewById(R.id.btnCancel);
@@ -47,17 +46,19 @@ public class RestoRegistration extends AppCompatActivity {
                 UUID uuid = UUID.randomUUID();
                 String ID = uuid.toString();
 
-                String busi_ness = business.getText().toString();
-                String e_mail = email.getText().toString();
-                String password = pass.getText().toString();
-                String add_ress = address.getText().toString();
-                String pho_ne = phone.getText().toString();
+                String restoBusiness = business.getText().toString();
+                String restoEmail = email.getText().toString();
+                String restoPassword = pass.getText().toString();
+                String restoAddress = address.getText().toString();
+                String restoPhone = phone.getText().toString();
+                String restoBio = bio.getText().toString();
 
-                restoModel user = new restoModel(ID,busi_ness,e_mail,password,add_ress,pho_ne);
+                restoModel user = new restoModel(ID,restoBusiness,restoEmail,restoPassword,restoAddress,restoPhone,restoBio);
 
                 reference.child(ID).setValue(user);
 
                 Toast.makeText(RestoRegistration.this, "The Restaurant User created successfully.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RestoRegistration.this, LoginActivity.class));
             }
         });
 

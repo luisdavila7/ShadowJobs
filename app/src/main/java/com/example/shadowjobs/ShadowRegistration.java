@@ -2,14 +2,12 @@ package com.example.shadowjobs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.shadowjobs.model.shadowModel;
 import com.example.shadowjobs.model.shadowModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,6 +52,7 @@ public class ShadowRegistration extends AppCompatActivity {
             reference.child(ID).setValue(user);
 
             Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
+
             startActivity(new Intent(ShadowRegistration.this, LoginActivity.class));
 
         });

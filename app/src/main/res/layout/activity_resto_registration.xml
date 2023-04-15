@@ -19,10 +19,11 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="New Account"
+        android:layout_width="189dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        android:text="Restaurant New Account"
         android:textAlignment="viewStart"
         android:textColor="#000"
         android:textSize="30sp"
@@ -47,9 +48,8 @@
         android:id="@+id/business"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="25dp"
         android:text="Email:"
         android:textColor="#333"
         android:textSize="18sp"
@@ -69,8 +69,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
         android:text="Address:"
         android:textColor="#333"
         android:textSize="18sp"
@@ -81,13 +81,25 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
         android:text="Phone:"
         android:textColor="#333"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:text="Bio:"
+        android:textColor="#333"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView5"
@@ -105,6 +117,7 @@
         android:id="@+id/email"
         android:layout_width="250dp"
         android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -114,7 +127,7 @@
         android:id="@+id/password"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -125,49 +138,58 @@
         android:id="@+id/address"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.391"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
 
     <EditText
         android:id="@+id/phone"
         android:layout_width="250dp"
         android:layout_height="48dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#000"
-        android:text="Create"
-        android:textColor="#FFF"
+    <EditText
+        android:id="@+id/bio"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.259"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="64dp"
         android:backgroundTint="#000"
         android:text="Cancel"
         android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:backgroundTint="#000"
+        android:text="Create"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -178,6 +200,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintVertical_bias="0.575" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
