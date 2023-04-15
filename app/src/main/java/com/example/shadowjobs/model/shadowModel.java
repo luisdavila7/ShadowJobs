@@ -14,8 +14,6 @@ public class shadowModel {
         this.desc = "";
     }
 
-
-
     public shadowModel() {
     }
 

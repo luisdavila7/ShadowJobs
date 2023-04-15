@@ -149,7 +149,7 @@ public class EditShadowProfile extends AppCompatActivity {
         if(!shadowDesc.equals(editDesc.getText().toString())){
 
             reference.child(shadowId).child("desc").setValue(editDesc.getText().toString());
-            shadowDesc = editDesc.getText().toString();
+            shadowDesc = editDesc.getText().toString().trim();
             return true;
 
         } else {
