@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.shadowjobs.databinding.ActivityRestoProfileBinding;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -22,7 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RestoProfile extends AppCompatActivity {
+public class RestoProfile extends DrawerBaseActivity {
+
+    ActivityRestoProfileBinding activityRestoProfileBinding;
 
     BarChart barChart;
     BarData barData;
@@ -37,7 +40,9 @@ public class RestoProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resto_profile);
+        activityRestoProfileBinding = ActivityRestoProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityRestoProfileBinding.getRoot());
+        allocateActivityTitle("Restaurant Profile");
 
         Intent intent = new Intent();
 

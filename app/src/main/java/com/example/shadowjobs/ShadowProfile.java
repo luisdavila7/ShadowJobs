@@ -10,6 +10,7 @@
  import androidx.annotation.NonNull;
  import androidx.appcompat.app.AppCompatActivity;
 
+ import com.example.shadowjobs.databinding.ActivityShadowProfileBinding;
  import com.github.mikephil.charting.charts.BarChart;
  import com.github.mikephil.charting.data.BarData;
  import com.github.mikephil.charting.data.BarDataSet;
@@ -23,7 +24,9 @@
 
  import java.util.ArrayList;
 
- public class ShadowProfile extends AppCompatActivity {
+ public class ShadowProfile extends DrawerBaseActivity {
+
+     ActivityShadowProfileBinding activityShadowProfileBinding;
 
     BarChart barChart;
     BarData barData;
@@ -38,7 +41,9 @@
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shadow_profile);
+        activityShadowProfileBinding = ActivityShadowProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityShadowProfileBinding.getRoot());
+        allocateActivityTitle("Shadow Profile");
 
         barChart =  findViewById(R.id.BarChart);
         getBarEntries();

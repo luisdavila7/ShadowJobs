@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.shadowjobs.databinding.ActivityEditShadowProfileBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class EditShadowProfile extends AppCompatActivity {
+public class EditShadowProfile extends DrawerBaseActivity {
+
+    ActivityEditShadowProfileBinding activityEditShadowProfileBinding;
 
     EditText editFirstName, editLastName, editPhone, editEmail, editDesc;
     Button btnSave, btnBack;
@@ -21,7 +24,9 @@ public class EditShadowProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_shadow_profile);
+        activityEditShadowProfileBinding = ActivityEditShadowProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityEditShadowProfileBinding.getRoot());
+        allocateActivityTitle("Edit Shadow Profile");
 
         reference = FirebaseDatabase.getInstance().getReference("shadows");
 

@@ -8,10 +8,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.shadowjobs.databinding.ActivityEditRestoProfileBinding;
+import com.example.shadowjobs.databinding.ActivityRestoProfileBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class EditRestoProfile extends AppCompatActivity {
+public class EditRestoProfile extends DrawerBaseActivity {
+
+    ActivityEditRestoProfileBinding activityEditRestoProfileBinding;
 
     EditText editRestoName, editRestoAddress, editRestoPhone, editRestoEmail, editRestoWebsite, editRestoDesc;
     Button btnSave, btnBack;
@@ -21,7 +25,9 @@ public class EditRestoProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_resto_profile);
+        activityEditRestoProfileBinding = ActivityEditRestoProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityEditRestoProfileBinding.getRoot());
+        allocateActivityTitle("Edit Restaurant Profile");
 
         // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("restaurants");
