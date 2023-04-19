@@ -53,17 +53,17 @@ public class LoginActivity extends AppCompatActivity {
                     for (DataSnapshot ds : task.getResult().getChildren()){
                         shadowModel user = ds.getValue(shadowModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)){
-                            Intent intentShadow = new Intent(LoginActivity.this, ShadowProfile.class);
-                            intentShadow.putExtra("id", user.getId());
-                            intentShadow.putExtra("fName", user.getfName());
-                            intentShadow.putExtra("lName", user.getlName());
-                            intentShadow.putExtra("phone", user.getPhone());
-                            intentShadow.putExtra("email", user.getEmail());
-                            intentShadow.putExtra("password", user.getPassword());
-                            intentShadow.putExtra("desc", user.getDesc());
-                            startActivity(intentShadow);
+                            Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
+                            intent.putExtra("id", user.getId());
+                            intent.putExtra("fName", user.getfName());
+                            intent.putExtra("lName", user.getlName());
+                            intent.putExtra("phone", user.getPhone());
+                            intent.putExtra("email", user.getEmail());
+                            intent.putExtra("password", user.getPassword());
+                            intent.putExtra("desc", user.getDesc());
+                            startActivity(intent);
                         } else {
-                            Toast.makeText(LoginActivity.this, "User or wrong password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -75,17 +75,17 @@ public class LoginActivity extends AppCompatActivity {
                     for (DataSnapshot ds : task.getResult().getChildren()) {
                         restoModel user = ds.getValue(restoModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
-                            Intent intentResto = new Intent(LoginActivity.this, RestoProfile.class);
-                            intentResto.putExtra("id", user.getId());
-                            intentResto.putExtra("business", user.getBusiness());
-                            intentResto.putExtra("address", user.getAddress());
-                            intentResto.putExtra("phone", user.getPhone());
-                            intentResto.putExtra("email", user.getEmail());
-                            intentResto.putExtra("password", user.getPassword());
-                            intentResto.putExtra("bio", user.getBio());
-                            startActivity(intentResto);
+                            Intent intent = new Intent(LoginActivity.this, RestoProfile.class);
+                            intent.putExtra("id", user.getId());
+                            intent.putExtra("business", user.getBusiness());
+                            intent.putExtra("address", user.getAddress());
+                            intent.putExtra("phone", user.getPhone());
+                            intent.putExtra("email", user.getEmail());
+                            intent.putExtra("password", user.getPassword());
+                            intent.putExtra("bio", user.getBio());
+                            startActivity(intent);
                         } else {
-                            Toast.makeText(LoginActivity.this, "Restaurant or wrong password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
