@@ -2,6 +2,7 @@ package com.example.shadowjobs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,17 +44,18 @@ public class ShadowRegistration extends AppCompatActivity {
 
             String f_name = fname.getText().toString();
             String l_name = lname.getText().toString();
-            String e_mail = email.getText().toString();
-            String password = pass.getText().toString();
+            String e_mail = email.getText().toString().trim();
+            String password = pass.getText().toString().trim();
             String pho_ne = phone.getText().toString();
 
-            shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,pho_ne);
-
-            reference.child(ID).setValue(user);
-
-            Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
-
-            startActivity(new Intent(ShadowRegistration.this, LoginActivity.class));
+            if (Patterns.EMAIL_ADDRESS.matcher(e_mail).matches() && password.length() >= 6){
+                shadowModel user = new shadowModel(ID,f_name,l_name,e_mail,password,pho_ne);
+                reference.child(ID).setValue(user);
+                Toast.makeText(ShadowRegistration.this, "The Shadow User created successfully.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ShadowRegistration.this, LoginActivity.class));
+            } else {
+                Toast.makeText(ShadowRegistration.this, "Please enter a valid email, and password should be at least 6 characters.", Toast.LENGTH_SHORT).show();
+            }
 
         });
 
