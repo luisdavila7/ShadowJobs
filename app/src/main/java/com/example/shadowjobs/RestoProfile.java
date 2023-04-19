@@ -1,13 +1,12 @@
 package com.example.shadowjobs;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.example.shadowjobs.databinding.ActivityRestoProfileBinding;
 import com.github.mikephil.charting.charts.BarChart;
@@ -35,7 +34,8 @@ public class RestoProfile extends DrawerBaseActivity {
     String id;
 
     Button btnEdit;
-    TextView name, address, phone, email, website, desc;
+
+    TextView txtBusinessName, txtAddress, txtBusinessPhone, txtBusinessEmail, txtRestoDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,19 +66,17 @@ public class RestoProfile extends DrawerBaseActivity {
     public void showBusinessInfo(){
 
         Intent intent = getIntent();
-        String restoName = intent.getStringExtra("name");
+        String restoName = intent.getStringExtra("business");
         String restoAddress = intent.getStringExtra("address");
         String restoPhone = intent.getStringExtra("phone");
         String restoEmail = intent.getStringExtra("email");
-//        String restoWebsite = intent.getStringExtra("website");
-//        String restoDesc = intent.getStringExtra("desc");
+        String restoDesc = intent.getStringExtra("bio");
 
-        name.setText(restoName);
-        address.setText(restoAddress);
-        phone.setText(restoPhone);
-        email.setText(restoEmail);
-//        website.setText(restoWebsite);
-//        desc.setText(restoDesc);
+        txtBusinessName.setText(restoName);
+        txtAddress.setText(restoAddress);
+        txtBusinessPhone.setText(restoPhone);
+        txtBusinessEmail.setText(restoEmail);
+        txtRestoDesc.setText(restoDesc);
 
     }
 
@@ -90,21 +88,19 @@ public class RestoProfile extends DrawerBaseActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    String nameDb = snapshot.child(id).child("name").getValue(String.class);
+                    String nameDb = snapshot.child(id).child("business").getValue(String.class);
                     String addressDb = snapshot.child(id).child("address").getValue(String.class);
                     String phoneDb = snapshot.child(id).child("phone").getValue(String.class);
                     String emailDb = snapshot.child(id).child("email").getValue(String.class);
-                    String websiteDb = snapshot.child(id).child("website").getValue(String.class);
-                    String descDb = snapshot.child(id).child("desc").getValue(String.class);
+                    String descDb = snapshot.child(id).child("bio").getValue(String.class);
 
                     Intent intent = new Intent(RestoProfile.this, EditRestoProfile.class);
                     intent.putExtra("id", id);
-                    intent.putExtra("name", nameDb);
+                    intent.putExtra("business", nameDb);
                     intent.putExtra("address", addressDb);
                     intent.putExtra("phone", phoneDb);
                     intent.putExtra("email", emailDb);
-                    intent.putExtra("website", websiteDb);
-                    intent.putExtra("desc", descDb);
+                    intent.putExtra("bio", descDb);
                     startActivity(intent);
                 }
             }

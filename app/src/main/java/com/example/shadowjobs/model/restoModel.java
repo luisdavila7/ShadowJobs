@@ -1,11 +1,11 @@
 package com.example.shadowjobs.model;
 
 public class restoModel {
-    String id, name, address, phone, email, password, bio;
+    String id, business, address, phone, email, password, bio;
 
-    public restoModel(String id, String name, String email, String password, String address, String phone, String bio) {
+    public restoModel(String id, String business, String email, String password, String address, String phone, String bio) {
         this.id = id;
-        this.name = name;
+        this.business = business;
         this.address = address;
         this.password = password;
         this.email = email;
@@ -19,8 +19,8 @@ public class restoModel {
     public String getId() {
         return id;
     }
-    public String getName() {
-        return name;
+    public String getBusiness() {
+        return business;
     }
     public String getAddress() {
         return address;
@@ -41,8 +41,8 @@ public class restoModel {
     public void setId(String id) {
         this.id = id;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setBusiness(String business) {
+        this.business = business;
     }
     public void setAddress(String address) {
         this.address = address;

@@ -89,10 +89,12 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Im here Shadow Login", Toast.LENGTH_SHORT).show();
 
                             startActivity(intentShadow);
+                        } else{
+                            Toast.makeText(LoginActivity.this, "User or wrong password", Toast.LENGTH_SHORT).show();
+                            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
                         }
                     }
                 }
-
             });
         } else if (radioRestaurant.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("restaurants");
@@ -105,22 +107,23 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent intentResto = new Intent(LoginActivity.this, RestoProfile.class);
                             intentResto.putExtra("id", user.getId());
-                            intentResto.putExtra("name", user.getName());
+                            intentResto.putExtra("business", user.getBusiness());
                             intentResto.putExtra("address", user.getAddress());
                             intentResto.putExtra("phone", user.getPhone());
                             intentResto.putExtra("email", user.getEmail());
                             intentResto.putExtra("password", user.getPassword());
                             intentResto.putExtra("bio", user.getBio());
-
-                            Toast.makeText(LoginActivity.this, "Im here Restaurant Login", Toast.LENGTH_SHORT).show();
                             startActivity(intentResto);
+                        } else{
+                            Toast.makeText(LoginActivity.this, "Restaurant or wrong password", Toast.LENGTH_SHORT).show();
+                            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
                         }
                     }
                 }
             });
-
-        } else{
-            Toast.makeText(LoginActivity.this, "The User and Password are incorrect.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
+            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
         }
     }
 }

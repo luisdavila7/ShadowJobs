@@ -100,20 +100,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtBusinessPhone" />
 
     <TextView
-        android:id="@+id/txtBusinessWebsite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Website.com"
-        android:textColor="#000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toEndOf="@+id/restoPicture"
-        app:layout_constraintTop_toBottomOf="@+id/txtBusinessEmail" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/restoPicture" />
 
     <TextView
-        android:id="@+id/restoDesc"
+        android:id="@+id/txtRestoDesc"
         android:layout_width="325dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
@@ -145,7 +131,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restoDesc">
+        app:layout_constraintTop_toBottomOf="@+id/txtRestoDesc">
 
         <TextView
             android:layout_width="wrap_content"
@@ -208,9 +194,8 @@
         android:id="@+id/RestoBarChart"
         android:layout_width="325dp"
         android:layout_height="150dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
