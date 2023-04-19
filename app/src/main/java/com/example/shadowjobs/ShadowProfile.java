@@ -133,4 +133,7 @@
         barEntriesArrayList.add(new BarEntry(6, 5));
 
     }
-}
+
+     @Override
+     public void onBackPressed() {}
+ }

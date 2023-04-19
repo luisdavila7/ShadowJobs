@@ -131,4 +131,7 @@ public class RestoProfile extends DrawerBaseActivity {
         barEntriesArrayList.add(new BarEntry(7, 5));
 
     }
+
+    @Override
+    public void onBackPressed(){}
 }
