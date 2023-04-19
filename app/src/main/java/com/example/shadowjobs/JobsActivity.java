@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.shadowjobs.databinding.ActivityJobsBinding;
 import com.example.shadowjobs.model.Job;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class JobsActivity extends AppCompatActivity {
+public class JobsActivity extends DrawerBaseActivity {
+
+    ActivityJobsBinding activityJobsBinding;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("JobPostings");
     RecyclerView recyclerView;
@@ -32,7 +35,9 @@ public class JobsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobs);
+        activityJobsBinding = ActivityJobsBinding.inflate(getLayoutInflater());
+        setContentView(activityJobsBinding.getRoot());
+        allocateActivityTitle("Jobs");
 
         recyclerView = findViewById(R.id.recyclerViewJobsList);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);

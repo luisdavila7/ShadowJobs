@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.shadowjobs.databinding.ActivityJobPostingBinding;
 import com.example.shadowjobs.model.Job;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
-public class JobPostingActivity extends AppCompatActivity {
+public class JobPostingActivity extends DrawerBaseActivity {
+
+    ActivityJobPostingBinding activityJobPostingBinding;
 
     EditText position, address,contactName, contactPhone, description, salary;
     Button create;
@@ -25,7 +28,9 @@ public class JobPostingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_posting);
+        activityJobPostingBinding = ActivityJobPostingBinding.inflate(getLayoutInflater());
+        setContentView(activityJobPostingBinding.getRoot());
+        allocateActivityTitle("Job Posting");
 
         position = findViewById(R.id.editTextPosition);
         address = findViewById(R.id.editTextAddress);
