@@ -57,6 +57,12 @@ public class RestoProfile extends DrawerBaseActivity {
         barChart.getDescription().setEnabled(false);
         id = intent.getStringExtra("id");
 
+        txtBusinessName = findViewById(R.id.txtBusinessName);
+        txtAddress = findViewById(R.id.txtAddress);
+        txtBusinessPhone = findViewById(R.id.txtBusinessPhone);
+        txtBusinessEmail = findViewById(R.id.txtBusinessEmail);
+        txtRestoDesc = findViewById(R.id.txtRestoDesc);
+
         btnEdit = findViewById(R.id.btnEditResto);
 
         showBusinessInfo();
@@ -116,13 +122,13 @@ public class RestoProfile extends DrawerBaseActivity {
 
         barEntriesArrayList = new ArrayList<>();
 
-        barEntriesArrayList.add(new BarEntry(1f, 0));
-        barEntriesArrayList.add(new BarEntry(1f, 8));
-        barEntriesArrayList.add(new BarEntry(1f, 0));
-        barEntriesArrayList.add(new BarEntry(1f, 4));
-        barEntriesArrayList.add(new BarEntry(1f, 3));
-        barEntriesArrayList.add(new BarEntry(1f, 6));
-        barEntriesArrayList.add(new BarEntry(1f, 5));
+        barEntriesArrayList.add(new BarEntry(1, 0));
+        barEntriesArrayList.add(new BarEntry(2, 8));
+        barEntriesArrayList.add(new BarEntry(3, 0));
+        barEntriesArrayList.add(new BarEntry(4, 4));
+        barEntriesArrayList.add(new BarEntry(5, 3));
+        barEntriesArrayList.add(new BarEntry(6, 6));
+        barEntriesArrayList.add(new BarEntry(7, 5));
 
     }
 }

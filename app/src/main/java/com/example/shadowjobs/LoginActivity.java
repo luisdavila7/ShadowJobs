@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     RadioButton radioShadow, radioRestaurant;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,27 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterAs.class)));
     }
 
-
-    public Boolean validUserName() {
-        String val = username.getText().toString();
-        if (val.isEmpty()) {
-            username.setError("Username is empty");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public Boolean validPass() {
-        String val = password.getText().toString();
-        if (val.isEmpty()) {
-            password.setError("password is empty");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void checkUser(){
         String userUserName = username.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
@@ -75,9 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     for (DataSnapshot ds : task.getResult().getChildren()){
                         shadowModel user = ds.getValue(shadowModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)){
-                            Toast.makeText(LoginActivity.this, userUserName+" "+userPassword, Toast.LENGTH_SHORT).show();
                             Intent intentShadow = new Intent(LoginActivity.this, ShadowProfile.class);
-
                             intentShadow.putExtra("id", user.getId());
                             intentShadow.putExtra("fName", user.getfName());
                             intentShadow.putExtra("lName", user.getlName());
@@ -85,13 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                             intentShadow.putExtra("email", user.getEmail());
                             intentShadow.putExtra("password", user.getPassword());
                             intentShadow.putExtra("desc", user.getDesc());
-
-                            Toast.makeText(LoginActivity.this, "Im here Shadow Login", Toast.LENGTH_SHORT).show();
-
                             startActivity(intentShadow);
-                        } else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "User or wrong password", Toast.LENGTH_SHORT).show();
-                            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
                         }
                     }
                 }
@@ -103,8 +75,6 @@ public class LoginActivity extends AppCompatActivity {
                     for (DataSnapshot ds : task.getResult().getChildren()) {
                         restoModel user = ds.getValue(restoModel.class);
                         if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
-                            Toast.makeText(LoginActivity.this, userUserName, Toast.LENGTH_SHORT).show();
-
                             Intent intentResto = new Intent(LoginActivity.this, RestoProfile.class);
                             intentResto.putExtra("id", user.getId());
                             intentResto.putExtra("business", user.getBusiness());
@@ -114,16 +84,14 @@ public class LoginActivity extends AppCompatActivity {
                             intentResto.putExtra("password", user.getPassword());
                             intentResto.putExtra("bio", user.getBio());
                             startActivity(intentResto);
-                        } else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "Restaurant or wrong password", Toast.LENGTH_SHORT).show();
-                            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
                         }
                     }
                 }
             });
         } else {
             Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
-            Intent Intent = new Intent(LoginActivity.this, LoginActivity.class);
         }
     }
 }
