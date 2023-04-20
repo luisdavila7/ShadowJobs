@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Welcome Shadow,"
+        android:text="Welcome Shadow"
         android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -126,12 +126,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="325dp"
         android:layout_height="110dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="56dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shadowDesc">
+        app:layout_constraintTop_toTopOf="@+id/btnShadowGotoJobs">
 
         <TextView
             android:layout_width="wrap_content"
@@ -200,5 +200,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" >
     </com.github.mikephil.charting.charts.BarChart>
+
+    <Button
+        android:id="@+id/btnShadowGotoJobs"
+        android:layout_width="328dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="116dp"
+        android:text="All available positions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shadowDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

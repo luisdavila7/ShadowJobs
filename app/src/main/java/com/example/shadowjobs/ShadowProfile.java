@@ -35,7 +35,7 @@
 
     String id;
 
-    Button btnEdit;
+    Button btnEdit,btnJobList;
     TextView fName, lName, phone, email, desc;
 
     @Override
@@ -62,9 +62,11 @@
         desc = findViewById(R.id.shadowDesc);
 
         btnEdit = findViewById(R.id.btnEditShadow);
+        btnJobList = findViewById(R.id.btnShadowGotoJobs);
 
         showShadowData();
         btnEdit.setOnClickListener(v -> passData());
+        btnJobList.setOnClickListener(v -> showAllJobs());
 
     }
 
@@ -86,6 +88,12 @@
 
      }
 
+     public void showAllJobs(){
+         Intent intent = new Intent(ShadowProfile.this, JobsActivity.class);
+         intent.putExtra("loggedInUserId", id);
+         intent.putExtra("loggedInUserType", "Shadow");
+         startActivity(intent);
+     }
      public void passData(){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("shadows");
