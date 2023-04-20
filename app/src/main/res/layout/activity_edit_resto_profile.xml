@@ -130,40 +130,16 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="33dp"
-        android:text="Website:"
-        android:textColor="#333"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/eTxtRestoWebsite"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/eTxtRestoEmail"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="33dp"
         android:text="Bio:"
         android:textColor="#333"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -173,8 +149,9 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/eTxtRestoWebsite"
+        app:layout_constraintTop_toBottomOf="@+id/eTxtRestoEmail"
         tools:ignore="MissingConstraints" />
 
     <Button

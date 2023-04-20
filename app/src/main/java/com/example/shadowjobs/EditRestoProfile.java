@@ -26,17 +26,12 @@ public class EditRestoProfile extends DrawerBaseActivity {
         setContentView(activityEditRestoProfileBinding.getRoot());
         allocateActivityTitle("Edit Restaurant Profile");
 
-        // reference "path" needs to be the same in ShadowRegistration, very important!!
         reference = FirebaseDatabase.getInstance().getReference("restaurants");
-
-        Intent intent = new Intent();
-        restoId = intent.getStringExtra("id");
 
         editRestoName = findViewById(R.id.eTxtRestoName);
         editRestoAddress = findViewById(R.id.eTxtRestoAddress);
         editRestoPhone = findViewById(R.id.eTxtRestoPhone);
         editRestoEmail = findViewById(R.id.eTxtRestoEmail);
-        editRestoWebsite = findViewById(R.id.eTxtRestoWebsite);
         editRestoDesc = findViewById(R.id.eTxtRestoDesc);
         btnSave = findViewById(R.id.btnSaveRestoProfile);
         btnBack = findViewById(R.id.btnBackRestoProfile);
@@ -44,7 +39,7 @@ public class EditRestoProfile extends DrawerBaseActivity {
 
         btnSave.setOnClickListener(v -> {
 
-            if (isRestoNameChanged() || isAddressChanged() || isRestoPhoneChanged() || isRestoEmailChanged() || isWebsiteChanged() || isRestoDescChanged()) {
+            if (isRestoNameChanged() || isAddressChanged() || isRestoPhoneChanged() || isRestoEmailChanged() || isRestoDescChanged()) {
 
                 Toast.makeText(EditRestoProfile.this, "Saved", Toast.LENGTH_SHORT).show();
 
@@ -64,7 +59,6 @@ public class EditRestoProfile extends DrawerBaseActivity {
             backToProfile.putExtra("address", restoAddress);
             backToProfile.putExtra("phone", restoPhone);
             backToProfile.putExtra("email", restoEmail);
-            backToProfile.putExtra("website", restoWebsite);
             backToProfile.putExtra("desc", restoDesc);
             startActivity(backToProfile);
 
@@ -74,18 +68,17 @@ public class EditRestoProfile extends DrawerBaseActivity {
     public void showData(){
 
         Intent intent = getIntent();
+        restoId = intent.getStringExtra("id");
         restoName = intent.getStringExtra("business");
         restoAddress = intent.getStringExtra("address");
         restoPhone = intent.getStringExtra("phone");
         restoEmail = intent.getStringExtra("email");
-        restoWebsite = intent.getStringExtra("website");
         restoDesc = intent.getStringExtra("desc");
 
         editRestoName.setText(restoName);
         editRestoAddress.setText(restoAddress);
         editRestoPhone.setText(restoPhone);
         editRestoEmail.setText(restoEmail);
-        editRestoWebsite.setText(restoWebsite);
         editRestoDesc.setText(restoDesc);
 
     }
@@ -144,22 +137,6 @@ public class EditRestoProfile extends DrawerBaseActivity {
 
             reference.child(restoId).child("email").setValue(editRestoEmail.getText().toString());
             restoEmail = editRestoEmail.getText().toString();
-            return true;
-
-        } else {
-
-            return false;
-
-        }
-
-    }
-
-    private boolean isWebsiteChanged(){
-
-        if(!restoWebsite.equals(editRestoWebsite.getText().toString())){
-
-            reference.child(restoId).child("website").setValue(editRestoWebsite.getText().toString());
-            restoWebsite = editRestoWebsite.getText().toString();
             return true;
 
         } else {

@@ -119,7 +119,7 @@ public class RestoProfile extends DrawerBaseActivity {
                     intent.putExtra("address", addressDb);
                     intent.putExtra("phone", phoneDb);
                     intent.putExtra("email", emailDb);
-                    intent.putExtra("bio", descDb);
+                    intent.putExtra("desc", descDb);
                     startActivity(intent);
                 }
             }

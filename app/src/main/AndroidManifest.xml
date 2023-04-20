@@ -24,6 +24,9 @@
             android:name=".EditShadowProfile"
             android:exported="false" />
         <activity
+            android:name=".EditRestoProfile"
+            android:exported="false" />
+        <activity
             android:name=".ShadowProfile"
             android:exported="false" />
         <activity
