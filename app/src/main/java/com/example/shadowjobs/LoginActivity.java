@@ -46,33 +46,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUser(){
-        String userUserName = username.getText().toString().trim();
+        String userEmail = username.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         DatabaseReference reference;
 
         if (radioShadow.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("shadows");
-            Query checkUserDatabase = reference.orderByChild("id").orderByChild("email").equalTo(userUserName);
+            Query checkUserDatabase = reference.orderByChild("email").equalTo(userEmail);
             checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()) {
                         username.setError(null);
-                        String data = snapshot.child("id").child("password").getValue(String.class);
-                        if(data.equals(userPassword)) {
-                            Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
-                            intent.putExtra("id", snapshot.child("id").getValue(String.class));
-                            intent.putExtra("fName", snapshot.child("fName").getValue(String.class));
-                            intent.putExtra("lName", snapshot.child("lName").getValue(String.class));
-                            intent.putExtra("phone", snapshot.child("phone").getValue(String.class));
-                            intent.putExtra("email", snapshot.child("email").getValue(String.class));
-                            intent.putExtra("password", snapshot.child("password").getValue(String.class));
-                            intent.putExtra("desc", snapshot.child("desc").getValue(String.class));
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            username.setError("Email or password invalid");
-                            username.requestFocus();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            shadowModel user = ds.getValue(shadowModel.class);
+                            if(user.getPassword().equals(userPassword)){
+                                Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
+                                intent.putExtra("id", user.getId());
+                                intent.putExtra("fName", user.getfName());
+                                intent.putExtra("lName", user.getlName());
+                                intent.putExtra("phone", user.getPhone());
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("password", user.getPassword());
+                                intent.putExtra("desc", user.getDesc());
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                username.setError("Email or password invalid");
+                                username.requestFocus();
+                            }
                         }
                     } else {
                         username.setError("Email or password invalid");
@@ -82,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
-        } else if (radioRestaurant.isChecked()){
+        } /*else if (radioRestaurant.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("restaurants");
             reference.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -106,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         } else {
             Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     @Override
