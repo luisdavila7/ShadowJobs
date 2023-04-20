@@ -31,7 +31,7 @@ public class RestoProfile extends DrawerBaseActivity {
     BarDataSet barDataSet;
     ArrayList barEntriesArrayList;
     String id;
-    Button btnEdit, btnJobPost, btnEditJobPost;
+    Button btnEdit, btnJobPost, btnJobsList;
     TextView txtBusinessName, txtAddress, txtBusinessPhone, txtBusinessEmail, txtRestoDesc;
 
     @Override
@@ -58,11 +58,13 @@ public class RestoProfile extends DrawerBaseActivity {
         txtRestoDesc = findViewById(R.id.txtRestoDesc);
         btnEdit = findViewById(R.id.btnEditResto);
         btnJobPost = findViewById(R.id.btnJobPost);
+        btnJobsList = findViewById(R.id.btnJobsList);
 
         showBusinessInfo();
         btnEdit.setOnClickListener(v -> passData());
 
-        btnJobPost.setOnClickListener(view -> startActivity(new Intent(RestoProfile.this, JobPostingActivity.class)));
+        btnJobPost.setOnClickListener(view -> postJob());
+        btnJobsList.setOnClickListener(view -> showMyJobs());
     }
 
     public void showBusinessInfo(){
@@ -81,6 +83,20 @@ public class RestoProfile extends DrawerBaseActivity {
         txtBusinessEmail.setText(restoEmail);
         txtRestoDesc.setText(restoDesc);
 
+    }
+
+    public void showMyJobs(){
+        Intent intent = new Intent(RestoProfile.this, JobsActivity.class);
+        intent.putExtra("loggedInUserId", id);
+        intent.putExtra("loggedInUserType", "Restaurant");
+        startActivity(intent);
+    }
+
+    public void postJob(){
+        Intent intent = new Intent(RestoProfile.this, JobPostingActivity.class);
+        intent.putExtra("loggedInUserId", id);
+        //intent.putExtra("loggedInUserType", "Restaurant");
+        startActivity(intent);
     }
 
     public void passData(){

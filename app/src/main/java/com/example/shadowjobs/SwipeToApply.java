@@ -49,7 +49,6 @@ public class SwipeToApply extends ItemTouchHelper.Callback {
         return false;
     }
 
-
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -69,7 +68,6 @@ public class SwipeToApply extends ItemTouchHelper.Callback {
         mbackground.setBounds(itemview.getRight(),itemview.getTop(),itemview.getRight(),itemview.getBottom());
         mbackground.draw(c);
 
-
         int deleteTop = itemview.getTop() + (itemHeight - myhight) / 2;
         int deleteMargin = (itemHeight - myhight)/2;
         int deleteLeft = itemview.getRight() - deleteMargin - myWidth;
@@ -86,8 +84,6 @@ public class SwipeToApply extends ItemTouchHelper.Callback {
     private void clearCanavas( Canvas c,Float left,Float top,Float right, Float bottom){
         c.drawRect(left,top,right,bottom,mpaint);
     }
-
-
 
     @Override
     public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
