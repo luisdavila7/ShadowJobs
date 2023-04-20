@@ -10,13 +10,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:text="Welcome"
         android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,36 +100,47 @@
         app:layout_constraintTop_toBottomOf="@+id/txtBusinessPhone" />
 
     <TextView
+        android:id="@+id/txtRestoDesc"
+        android:layout_width="325dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:hint="Tell us more about yourself"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="56dp"
         android:text="Business Description"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restoPicture" />
 
     <TextView
-        android:id="@+id/txtRestoDesc"
-        android:layout_width="325dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="4dp"
-        android:hint="Tell us more about yourself"
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Weekly work"
+        android:textColor="#000"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="325dp"
         android:layout_height="110dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRestoDesc">
 
@@ -177,19 +188,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Weekly work"
-        android:textColor="#000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/RestoBarChart"
         android:layout_width="325dp"
@@ -203,21 +201,21 @@
         android:id="@+id/btnJobPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="44dp"
         android:text="Job Posting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RestoBarChart" />
 
     <Button
-        android:id="@+id/btnJobPostEdit"
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="40dp"
-        android:text="Edit Jobs"
+        android:text="List of Jobs"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toEndOf="@+id/btnJobPost"
         app:layout_constraintTop_toBottomOf="@+id/RestoBarChart" />
 

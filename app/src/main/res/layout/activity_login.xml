@@ -79,39 +79,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPass" />
+        tools:layout_editor_absoluteY="517dp" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#000000"
         android:text="Login"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.08" />
-
-    <Button
-        android:id="@+id/forgotPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:backgroundTint="#00FFFFFF"
-        android:fontFamily="sans-serif"
-        android:text="forgot password"
-        android:textAlignment="center"
-        android:textColor="#2196F3"
-        android:textStyle="italic"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <ProgressBar
         android:id="@+id/loading"
