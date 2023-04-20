@@ -27,6 +27,12 @@
             android:name=".ShadowProfile"
             android:exported="false" />
         <activity
+            android:name=".JobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobPostingActivity"
+            android:exported="false" />
+        <activity
             android:name=".RestoRegistration"
             android:exported="false" />
         <activity
