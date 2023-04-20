@@ -30,6 +30,8 @@ public class JobsListRecyclerAdapter extends RecyclerView.Adapter<JobsListRecycl
         holder.jobPosition.setText(jobList.get(position).getPosition());
         holder.jobSalary.setText(jobList.get(position).getSalary().toString());
         holder.jobDescription.setText(jobList.get(position).getDescription());
+        holder.jobApplyStatus.setText(jobList.get(position).getShadowId().trim() == "" ? "This job is available." : jobList.get(position).getShadowId());
+
     }
 
     @Override
@@ -38,13 +40,15 @@ public class JobsListRecyclerAdapter extends RecyclerView.Adapter<JobsListRecycl
     }
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView jobPosition, jobSalary, jobDescription;
+        private TextView jobPosition, jobSalary, jobDescription, jobApplyStatus;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             jobPosition =  itemView.findViewById(R.id.textViewJobPosition);
             jobSalary =  itemView.findViewById(R.id.textViewJobSalary);
             jobDescription =  itemView.findViewById(R.id.textViewJobDescription);
+            jobApplyStatus = itemView.findViewById(R.id.textViewJobApplyStatus);
+
         }
 
     }

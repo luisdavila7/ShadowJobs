@@ -4,12 +4,10 @@
  import android.graphics.Color;
  import android.os.Bundle;
  import android.view.MenuItem;
- import android.view.View;
  import android.widget.Button;
  import android.widget.TextView;
 
  import androidx.annotation.NonNull;
- import androidx.appcompat.app.AppCompatActivity;
 
  import com.example.shadowjobs.databinding.ActivityShadowProfileBinding;
  import com.github.mikephil.charting.charts.BarChart;
@@ -108,7 +106,8 @@
 
      public void showAllJobs(){
          Intent intent = new Intent(ShadowProfile.this, JobsActivity.class);
-         intent.putExtra("loggedInUserId", id);
+         StringBuilder applyStatus = new StringBuilder().append(fName.getText()).append(" ").append(lName.getText()).append(" has applied (Phone: ").append(phone.getText()).append(").");
+         intent.putExtra("loggedInUserId", applyStatus.toString());
          intent.putExtra("loggedInUserType", "Shadow");
          startActivity(intent);
      }

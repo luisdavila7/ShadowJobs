@@ -45,29 +45,27 @@ public class JobPostingActivity extends DrawerBaseActivity {
         Intent intent = getIntent();
         loggedInUserId = intent.getStringExtra("loggedInUserId");
 
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("JobPostings");
+        create.setOnClickListener(v -> {
+            database = FirebaseDatabase.getInstance();
+            reference = database.getReference("JobPostings");
 
-                UUID uuid = UUID.randomUUID();
-                String jobId = uuid.toString();
+            UUID uuid = UUID.randomUUID();
+            String jobId = uuid.toString();
 
-                String jobPosition = position.getText().toString();
-                String jobAddress = address.getText().toString();
-                String jobContactName = contactName.getText().toString();
-                String jobContactPhone = contactPhone.getText().toString();
-                String jobDescription = description.getText().toString();
-                Float jobSalary = Float.parseFloat(salary.getText().toString());
+            String jobPosition = position.getText().toString();
+            String jobAddress = address.getText().toString();
+            String jobContactName = contactName.getText().toString();
+            String jobContactPhone = contactPhone.getText().toString();
+            String jobDescription = description.getText().toString();
+            Float jobSalary = Float.parseFloat(salary.getText().toString());
 
-                Job job = new Job(jobId,loggedInUserId,jobPosition,jobAddress,jobContactName,jobContactPhone,jobDescription,jobSalary,"");
+            Job job = new Job(jobId,loggedInUserId,jobPosition,jobAddress,jobContactName,jobContactPhone,jobDescription,jobSalary,"");
 
-                reference.child(jobId).setValue(job);
+            reference.child(jobId).setValue(job);
 
-                Toast.makeText(JobPostingActivity.this, "The job posted successfully.", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(JobPostingActivity.this,LoginActivity.class));
-            }
+            Toast.makeText(JobPostingActivity.this, "The job posted successfully.", Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(JobPostingActivity.this, RestoProfile.class));
+            finish();
         });
     }
 }

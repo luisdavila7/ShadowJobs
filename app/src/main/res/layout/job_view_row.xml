@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="100dp"
     android:layout_margin="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -16,11 +16,9 @@
             android:layout_height="22dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="18dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="29dp"
-            android:layout_marginBottom="50dp"
             android:layout_toStartOf="@+id/textViewJobSalary"
             android:layout_weight="1"
             android:text="Position"
@@ -33,10 +31,8 @@
             android:layout_height="22dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="54dp"
-            android:layout_marginBottom="49dp"
             android:layout_weight="1"
             android:text="Salary"
             android:textAlignment="textEnd"
@@ -49,10 +45,8 @@
             android:layout_height="23dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="48dp"
             android:layout_weight="1"
             android:text="CAD"
             android:textSize="16sp"
@@ -61,18 +55,31 @@
         <TextView
             android:id="@+id/textViewJobDescription"
             android:layout_width="380dp"
-            android:layout_height="50dp"
+            android:layout_height="41dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="29dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="12dp"
             android:layout_weight="1"
             android:text="Description"
             android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewJobApplyStatus"
+            android:layout_width="375dp"
+            android:layout_height="18dp"
+            android:layout_below="@+id/textViewJobDescription"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="4dp"
+            android:text=""
+            android:textColor="@android:color/holo_red_light" />
 
 
     </RelativeLayout>
