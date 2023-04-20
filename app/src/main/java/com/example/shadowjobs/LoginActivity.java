@@ -84,31 +84,41 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
-        } /*else if (radioRestaurant.isChecked()){
+        } else if (radioRestaurant.isChecked()) {
             reference = FirebaseDatabase.getInstance().getReference("restaurants");
-            reference.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    for (DataSnapshot ds : task.getResult().getChildren()) {
-                        restoModel user = ds.getValue(restoModel.class);
-                        if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
-                            Intent intent = new Intent(LoginActivity.this, RestoProfile.class);
-                            intent.putExtra("id", user.getId());
-                            intent.putExtra("business", user.getBusiness());
-                            intent.putExtra("address", user.getAddress());
-                            intent.putExtra("phone", user.getPhone());
-                            intent.putExtra("email", user.getEmail());
-                            intent.putExtra("password", user.getPassword());
-                            intent.putExtra("bio", user.getBio());
-                            startActivity(intent);
-                            finish();
+            Query checkUserDatabase = reference.orderByChild("email").equalTo(userEmail);
+            checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        username.setError(null);
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            restoModel user = ds.getValue(restoModel.class);
+                            if (user.getPassword().equals(userPassword)) {
+                                Intent intent = new Intent(LoginActivity.this, RestoProfile.class);
+                                intent.putExtra("id", user.getId());
+                                intent.putExtra("business", user.getBusiness());
+                                intent.putExtra("address", user.getAddress());
+                                intent.putExtra("phone", user.getPhone());
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("password", user.getPassword());
+                                intent.putExtra("bio", user.getBio());
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                username.setError("Email or password invalid");
+                                username.requestFocus();
+                            }
                         }
+                    } else {
+                        username.setError("Email or password invalid");
+                        username.requestFocus();
                     }
                 }
-                //Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
-        } else {
-            Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
-        }*/
+        }
     }
 
     @Override
