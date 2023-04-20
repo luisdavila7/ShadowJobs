@@ -13,12 +13,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+
+    int type;
 
     @Override
     public void setContentView(View view) {
@@ -42,17 +45,9 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
+
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                /*if (Condition to check which type of user is logged in){
-
-
-
-                } else {
-
-
-
-                }*/
                 overridePendingTransition(0,0);
                 break;
             case R.id.nav_editProfile:

@@ -2,9 +2,12 @@ package com.example.shadowjobs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.shadowjobs.databinding.ActivityEditRestoProfileBinding;
 import com.google.firebase.database.DatabaseReference;
@@ -13,11 +16,27 @@ import com.google.firebase.database.FirebaseDatabase;
 public class EditRestoProfile extends DrawerBaseActivity {
 
     ActivityEditRestoProfileBinding activityEditRestoProfileBinding;
-
-    EditText editRestoName, editRestoAddress, editRestoPhone, editRestoEmail, editRestoWebsite, editRestoDesc;
+    EditText editRestoName, editRestoAddress, editRestoPhone, editRestoEmail, editRestoDesc;
     Button btnSave, btnBack;
-    String restoId, restoName, restoAddress, restoPhone, restoEmail, restoWebsite, restoDesc;
+    String restoId, restoName, restoAddress, restoPhone, restoEmail, restoDesc;
     DatabaseReference reference;
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_profile) {
+
+            passData();
+            return false;
+        } else if (item.getItemId() == R.id.nav_editProfile){
+
+            return false;
+        } else if (item.getItemId() == R.id.nav_jobs){
+            showMyJobs();
+            return false;
+        } else{
+            return super.onNavigationItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +44,8 @@ public class EditRestoProfile extends DrawerBaseActivity {
         activityEditRestoProfileBinding = ActivityEditRestoProfileBinding.inflate(getLayoutInflater());
         setContentView(activityEditRestoProfileBinding.getRoot());
         allocateActivityTitle("Edit Restaurant Profile");
+
+
 
         reference = FirebaseDatabase.getInstance().getReference("restaurants");
 
@@ -53,16 +74,27 @@ public class EditRestoProfile extends DrawerBaseActivity {
 
         btnBack.setOnClickListener(v -> {
 
-            Intent backToProfile = new Intent(EditRestoProfile.this, RestoProfile.class);
-            backToProfile.putExtra("id", restoId);
-            backToProfile.putExtra("business", restoName);
-            backToProfile.putExtra("address", restoAddress);
-            backToProfile.putExtra("phone", restoPhone);
-            backToProfile.putExtra("email", restoEmail);
-            backToProfile.putExtra("desc", restoDesc);
-            startActivity(backToProfile);
+            passData();
 
         });
+    }
+
+    public void passData(){
+        Intent backToProfile = new Intent(EditRestoProfile.this, RestoProfile.class);
+        backToProfile.putExtra("id", restoId);
+        backToProfile.putExtra("business", restoName);
+        backToProfile.putExtra("address", restoAddress);
+        backToProfile.putExtra("phone", restoPhone);
+        backToProfile.putExtra("email", restoEmail);
+        backToProfile.putExtra("desc", restoDesc);
+        startActivity(backToProfile);
+    }
+
+    public void showMyJobs(){
+        Intent intent = new Intent(EditRestoProfile.this, JobsActivity.class);
+        intent.putExtra("loggedInUserId", restoId);
+        intent.putExtra("loggedInUserType", "Restaurant");
+        startActivity(intent);
     }
 
     public void showData(){

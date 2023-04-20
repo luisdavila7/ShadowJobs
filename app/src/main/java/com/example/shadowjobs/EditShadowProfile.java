@@ -1,9 +1,11 @@
 package com.example.shadowjobs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,6 +22,23 @@ public class EditShadowProfile extends DrawerBaseActivity {
     Button btnSave, btnBack;
     String shadowId, shadowFirstName, shadowLastName, shadowPhone, shadowEmail, shadowDesc;
     DatabaseReference reference;
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_profile) {
+            //implement specific
+            passData();
+            return false;
+        } else if (item.getItemId() == R.id.nav_editProfile){
+            //startActivity(new Intent(ShadowProfile.this, EditShadowProfile.class));
+//            passData();
+//             overridePendingTransition(0,0);
+//             finish();
+            return false;
+        } else{
+            return super.onNavigationItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +74,20 @@ public class EditShadowProfile extends DrawerBaseActivity {
 
         btnBack.setOnClickListener(v -> {
 
-            Intent backToProfile = new Intent(EditShadowProfile.this, ShadowProfile.class);
-            backToProfile.putExtra("id", shadowId);
-            backToProfile.putExtra("fName", shadowFirstName);
-            backToProfile.putExtra("lName", shadowLastName);
-            backToProfile.putExtra("phone", shadowPhone);
-            backToProfile.putExtra("email", shadowEmail);
-            backToProfile.putExtra("desc", shadowDesc);
-            startActivity(backToProfile);
+            passData();
 
         });
+    }
+
+    public void passData(){
+        Intent backToProfile = new Intent(EditShadowProfile.this, ShadowProfile.class);
+        backToProfile.putExtra("id", shadowId);
+        backToProfile.putExtra("fName", shadowFirstName);
+        backToProfile.putExtra("lName", shadowLastName);
+        backToProfile.putExtra("phone", shadowPhone);
+        backToProfile.putExtra("email", shadowEmail);
+        backToProfile.putExtra("desc", shadowDesc);
+        startActivity(backToProfile);
     }
 
     public void showData(){

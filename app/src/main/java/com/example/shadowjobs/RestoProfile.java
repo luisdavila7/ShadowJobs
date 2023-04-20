@@ -3,6 +3,7 @@ package com.example.shadowjobs;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,6 +34,23 @@ public class RestoProfile extends DrawerBaseActivity {
     String id;
     Button btnEdit, btnJobPost, btnJobsList;
     TextView txtBusinessName, txtAddress, txtBusinessPhone, txtBusinessEmail, txtRestoDesc;
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_profile) {
+
+            return false;
+        } else if (item.getItemId() == R.id.nav_editProfile){
+
+            passData();
+            return false;
+        } else if (item.getItemId() == R.id.nav_jobs){
+            showMyJobs();
+            return false;
+        } else{
+            return super.onNavigationItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
