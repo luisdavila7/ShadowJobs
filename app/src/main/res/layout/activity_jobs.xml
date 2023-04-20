@@ -31,36 +31,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextSearch"
-            android:layout_width="322dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="6dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewJobList" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewJobsList"
-            android:layout_width="379dp"
-            android:layout_height="599dp"
-            android:layout_below="@+id/editTextSearch"
+            android:layout_width="383dp"
+            android:layout_height="637dp"
+            android:layout_below="@+id/textViewJobList"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextSearch" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </RelativeLayout>

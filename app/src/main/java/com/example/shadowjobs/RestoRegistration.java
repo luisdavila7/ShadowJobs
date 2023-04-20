@@ -2,6 +2,7 @@ package com.example.shadowjobs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,18 +48,21 @@ public class RestoRegistration extends AppCompatActivity {
                 String ID = uuid.toString();
 
                 String restoBusiness = business.getText().toString();
-                String restoEmail = email.getText().toString();
-                String restoPassword = pass.getText().toString();
+                String restoEmail = email.getText().toString().trim();
+                String restoPassword = pass.getText().toString().trim();
                 String restoAddress = address.getText().toString();
                 String restoPhone = phone.getText().toString();
                 String restoBio = bio.getText().toString();
 
-                restoModel user = new restoModel(ID,restoBusiness,restoEmail,restoPassword,restoAddress,restoPhone,restoBio);
+                if (Patterns.EMAIL_ADDRESS.matcher(restoEmail).matches() && restoPassword.length() >= 6){
+                    restoModel user = new restoModel(ID,restoBusiness,restoEmail,restoPassword,restoAddress,restoPhone,restoBio);
+                    reference.child(ID).setValue(user);
+                    Toast.makeText(RestoRegistration.this, "The Restaurant User created successfully.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RestoRegistration.this, LoginActivity.class));
+                } else {
+                    Toast.makeText(RestoRegistration.this, "Please enter a valid email, and password should be at least 6 characters.", Toast.LENGTH_SHORT).show();
+                }
 
-                reference.child(ID).setValue(user);
-
-                Toast.makeText(RestoRegistration.this, "The Restaurant User created successfully.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RestoRegistration.this, LoginActivity.class));
             }
         });
 
