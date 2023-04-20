@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLogin, btnSignUp, btnForgotPass;
+    Button btnLogin, btnSignUp;
     EditText username, password;
     RadioButton radioShadow, radioRestaurant;
 
@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.login);
         btnSignUp = findViewById(R.id.signup);
-        btnForgotPass = findViewById(R.id.forgotPass);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         radioShadow = findViewById(R.id.rBtnShadows);

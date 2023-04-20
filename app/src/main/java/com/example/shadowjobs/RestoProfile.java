@@ -30,14 +30,8 @@ public class RestoProfile extends DrawerBaseActivity {
     BarData barData;
     BarDataSet barDataSet;
     ArrayList barEntriesArrayList;
-
     String id;
-
-    Button btnEdit;
-    Button btnJobPost;
-    Button btnEditJobPost;
-
-
+    Button btnEdit, btnJobPost, btnEditJobPost;
     TextView txtBusinessName, txtAddress, txtBusinessPhone, txtBusinessEmail, txtRestoDesc;
 
     @Override
@@ -46,8 +40,6 @@ public class RestoProfile extends DrawerBaseActivity {
         activityRestoProfileBinding = ActivityRestoProfileBinding.inflate(getLayoutInflater());
         setContentView(activityRestoProfileBinding.getRoot());
         allocateActivityTitle("Restaurant Profile");
-
-        Intent intent = new Intent();
 
         barChart =  findViewById(R.id.RestoBarChart);
         getBarEntries();
@@ -58,15 +50,14 @@ public class RestoProfile extends DrawerBaseActivity {
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
-        id = intent.getStringExtra("id");
 
         txtBusinessName = findViewById(R.id.txtBusinessName);
         txtAddress = findViewById(R.id.txtAddress);
         txtBusinessPhone = findViewById(R.id.txtBusinessPhone);
         txtBusinessEmail = findViewById(R.id.txtBusinessEmail);
         txtRestoDesc = findViewById(R.id.txtRestoDesc);
-
         btnEdit = findViewById(R.id.btnEditResto);
+        btnJobPost = findViewById(R.id.btnJobPost);
 
         showBusinessInfo();
         btnEdit.setOnClickListener(v -> passData());
@@ -77,6 +68,7 @@ public class RestoProfile extends DrawerBaseActivity {
     public void showBusinessInfo(){
 
         Intent intent = getIntent();
+        id = intent.getStringExtra("id");
         String restoName = intent.getStringExtra("business");
         String restoAddress = intent.getStringExtra("address");
         String restoPhone = intent.getStringExtra("phone");
