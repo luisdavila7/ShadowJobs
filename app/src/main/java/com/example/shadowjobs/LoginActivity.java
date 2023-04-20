@@ -7,14 +7,18 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.shadowjobs.model.restoModel;
 import com.example.shadowjobs.model.shadowModel;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,26 +52,35 @@ public class LoginActivity extends AppCompatActivity {
 
         if (radioShadow.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("shadows");
-            reference.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    for (DataSnapshot ds : task.getResult().getChildren()){
-                        shadowModel user = ds.getValue(shadowModel.class);
-                        if (user.getEmail().equals(userUserName) && user.getPassword().equals(userPassword)) {
+            Query checkUserDatabase = reference.orderByChild("id").orderByChild("email").equalTo(userUserName);
+            checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()) {
+                        username.setError(null);
+                        String data = snapshot.child("id").child("password").getValue(String.class);
+                        if(data.equals(userPassword)) {
                             Intent intent = new Intent(LoginActivity.this, ShadowProfile.class);
-                            intent.putExtra("id", user.getId());
-                            intent.putExtra("fName", user.getfName());
-                            intent.putExtra("lName", user.getlName());
-                            intent.putExtra("phone", user.getPhone());
-                            intent.putExtra("email", user.getEmail());
-                            intent.putExtra("password", user.getPassword());
-                            intent.putExtra("desc", user.getDesc());
+                            intent.putExtra("id", snapshot.child("id").getValue(String.class));
+                            intent.putExtra("fName", snapshot.child("fName").getValue(String.class));
+                            intent.putExtra("lName", snapshot.child("lName").getValue(String.class));
+                            intent.putExtra("phone", snapshot.child("phone").getValue(String.class));
+                            intent.putExtra("email", snapshot.child("email").getValue(String.class));
+                            intent.putExtra("password", snapshot.child("password").getValue(String.class));
+                            intent.putExtra("desc", snapshot.child("desc").getValue(String.class));
                             startActivity(intent);
                             finish();
-                            break;
+                        } else {
+                            username.setError("Email or password invalid");
+                            username.requestFocus();
                         }
+                    } else {
+                        username.setError("Email or password invalid");
+                        username.requestFocus();
                     }
-                    Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
         } else if (radioRestaurant.isChecked()){
             reference = FirebaseDatabase.getInstance().getReference("restaurants");
@@ -89,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 }
-                Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
             });
         } else {
             Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
