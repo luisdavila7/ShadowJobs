@@ -2,6 +2,7 @@ package com.example.shadowjobs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public class JobPostingActivity extends DrawerBaseActivity {
 
     EditText position, address,contactName, contactPhone, description, salary;
     Button create;
-
+    String loggedInUserId, loggedInUserType;
     FirebaseDatabase database;
 
     DatabaseReference reference;
@@ -41,6 +42,9 @@ public class JobPostingActivity extends DrawerBaseActivity {
 
         create = findViewById(R.id.btnJobPosting);
 
+        Intent intent = getIntent();
+        loggedInUserId = intent.getStringExtra("loggedInUserId");
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +61,7 @@ public class JobPostingActivity extends DrawerBaseActivity {
                 String jobDescription = description.getText().toString();
                 Float jobSalary = Float.parseFloat(salary.getText().toString());
 
-                Job job = new Job(jobId,null,jobPosition,jobAddress,jobContactName,jobContactPhone,jobDescription,jobSalary);
+                Job job = new Job(jobId,loggedInUserId,jobPosition,jobAddress,jobContactName,jobContactPhone,jobDescription,jobSalary,"");
 
                 reference.child(jobId).setValue(job);
 

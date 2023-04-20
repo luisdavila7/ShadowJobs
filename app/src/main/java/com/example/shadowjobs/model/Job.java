@@ -1,5 +1,7 @@
 package com.example.shadowjobs.model;
 
+import java.util.List;
+
 public class Job {
     private String jobId;
     private String restaurantId;
@@ -9,11 +11,12 @@ public class Job {
     private String contactPhoneNumber;
     private String description;
     private Float salary;
+    private String shadowId;
 
     public Job(){
 
     }
-    public Job(String jobId, String restaurantId, String position, String address, String contactName, String contactPhoneNumber, String description, Float salary) {
+    public Job(String jobId, String restaurantId, String position, String address, String contactName, String contactPhoneNumber, String description, Float salary, String shadowId) {
         this.jobId = jobId;
         this.restaurantId = restaurantId;
         this.position = position;
@@ -22,6 +25,7 @@ public class Job {
         this.contactPhoneNumber = contactPhoneNumber;
         this.description = description;
         this.salary = salary;
+        this.shadowId = shadowId;
     }
 
     public String getJobId() {
@@ -82,5 +86,13 @@ public class Job {
 
     public void setSalary(Float salary) {
         this.salary = salary;
+    }
+
+    public String getShadowId() {
+        return shadowId;
+    }
+
+    public void setShadowId(String shadowId) {
+        this.shadowId = shadowId;
     }
 }

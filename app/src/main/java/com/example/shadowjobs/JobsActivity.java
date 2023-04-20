@@ -1,12 +1,12 @@
 package com.example.shadowjobs;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class JobsActivity extends DrawerBaseActivity {
 
     ActivityJobsBinding activityJobsBinding;
-
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("JobPostings");
     RecyclerView recyclerView;
     JobsListRecyclerAdapter jobsListRecyclerAdapter;
-
     ArrayList<Job> jobList = new ArrayList<Job>();
     CoordinatorLayout coordinatorLayout;
+
+    String loggedInUserId, loggedInUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +46,21 @@ public class JobsActivity extends DrawerBaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(jobsListRecyclerAdapter);
 
+        Intent intent = getIntent();
+        loggedInUserId = intent.getStringExtra("loggedInUserId");
+        loggedInUserType = intent.getStringExtra("loggedInUserType");
+
         databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
-                //jobList = new ArrayList<Job>();
                 if (task.isSuccessful()) {
                     for (DataSnapshot ds : task.getResult().getChildren()){
                         Job job = ds.getValue(Job.class);
-                        jobList.add(job);
+                        if(loggedInUserType.equals("Shadow") && job.getShadowId().trim().length() == 0)
+                            jobList.add(job);
+                        else if (loggedInUserId.equals(job.getRestaurantId()))
+                            jobList.add(job);
                     }
 
                     jobsListRecyclerAdapter.notifyDataSetChanged();
@@ -63,37 +69,71 @@ public class JobsActivity extends DrawerBaseActivity {
             }
         });
 
-        enableSwipeToDelete();
+        enableSwipe();
     }
 
-    private void enableSwipeToDelete() {
-        SwipeToDelete swipeToDelete = new SwipeToDelete(this) {
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+    private void enableSwipe() {
+        if(loggedInUserType.equals("Restaurant")){
+            SwipeToDelete swipeToDelete = new SwipeToDelete(this) {
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-                final int pos = viewHolder.getAdapterPosition();
-                final Job job = jobsListRecyclerAdapter.getData().get(pos);
+                    final int pos = viewHolder.getAdapterPosition();
+                    final Job job = jobsListRecyclerAdapter.getData().get(pos);
 
-                jobsListRecyclerAdapter.removeItem(pos);
+                    jobsListRecyclerAdapter.removeItem(pos);
+                    databaseReference.child(job.getJobId()).removeValue();
+                    Snackbar snackbar = Snackbar.make(coordinatorLayout, "Job removed",Snackbar.LENGTH_LONG);
 
-                databaseReference.child(job.getJobId()).removeValue();
+                    snackbar.setAction("Undo it", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            jobsListRecyclerAdapter.restoreItem(job,pos);
+                            databaseReference.child(job.getJobId()).setValue(job);
+                        }
+                    });
 
-                Snackbar snackbar = Snackbar.make(coordinatorLayout, "Job removed",Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            };
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDelete);
+            itemTouchHelper.attachToRecyclerView(recyclerView);
 
-                snackbar.setAction("Undo it", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        jobsListRecyclerAdapter.restoreItem(job,pos);
+        } else if(loggedInUserType.equals("Shadow")){
 
-                        databaseReference.child(job.getJobId()).setValue(job);
-                    }
-                });
 
-                snackbar.show();
-            }
-        };
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDelete);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+            SwipeToApply swipeToApply = new SwipeToApply(this) {
+
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                    final int pos = viewHolder.getAdapterPosition();
+                    final Job job = jobsListRecyclerAdapter.getData().get(pos);
+
+                    jobsListRecyclerAdapter.removeItem(pos);
+                    databaseReference.child(job.getJobId()).removeValue();
+                    job.setShadowId(loggedInUserId);
+                    databaseReference.child(job.getJobId()).setValue(job);
+                    Snackbar snackbar = Snackbar.make(coordinatorLayout, "You applied for this job.",Snackbar.LENGTH_LONG);
+
+                    snackbar.setAction("Undo it", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            jobsListRecyclerAdapter.restoreItem(job,pos);
+                            databaseReference.child(job.getJobId()).removeValue();
+                            job.setShadowId("");
+                            databaseReference.child(job.getJobId()).setValue(job);
+                        }
+                    });
+
+                    snackbar.show();
+                }
+            };
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToApply);
+            itemTouchHelper.attachToRecyclerView(recyclerView);
+
+
+        }
 
     }
 
