@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ShadowJobs"
         tools:targetApi="31">
         <activity
+            android:name=".JobEditPost"
+            android:exported="false" />
+        <activity
             android:name=".DrawerBaseActivity"
             android:exported="false" />
         <activity

@@ -34,6 +34,9 @@ public class RestoProfile extends DrawerBaseActivity {
     String id;
 
     Button btnEdit;
+    Button btnJobPost;
+    Button btnEditJobPost;
+
 
     TextView txtBusinessName, txtAddress, txtBusinessPhone, txtBusinessEmail, txtRestoDesc;
 
@@ -67,6 +70,10 @@ public class RestoProfile extends DrawerBaseActivity {
 
         showBusinessInfo();
         btnEdit.setOnClickListener(v -> passData());
+
+        btnJobPost.setOnClickListener(view -> startActivity(new Intent(RestoProfile.this, JobPostingActivity.class)));
+        btnEditJobPost.setOnClickListener(view -> startActivity(new Intent(RestoProfile.this, JobEditPost.class)));
+
     }
 
     public void showBusinessInfo(){

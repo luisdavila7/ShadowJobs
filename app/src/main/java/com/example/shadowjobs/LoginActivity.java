@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnSignUp, btnForgotPass;
     EditText username, password;
     RadioButton radioShadow, radioRestaurant;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         radioRestaurant = findViewById(R.id.rBtnRestaurants);
 
         btnLogin.setOnClickListener(view -> checkUser());
-
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterAs.class)));
     }
 
@@ -64,9 +62,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                             break;
+                        } else{
+                            Toast.makeText(LoginActivity.this, "Email or Password Invalid Shadow", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
                 }
             });
         } else if (radioRestaurant.isChecked()){
@@ -86,10 +85,11 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("bio", user.getBio());
                             startActivity(intent);
                             finish();
+                        } else{
+                            Toast.makeText(LoginActivity.this, "Email or Password Invalid Restaurant", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
-                Toast.makeText(LoginActivity.this, "Email or Password Invalid", Toast.LENGTH_SHORT).show();
             });
         } else {
             Toast.makeText(LoginActivity.this, "Please select a type of user", Toast.LENGTH_SHORT).show();
