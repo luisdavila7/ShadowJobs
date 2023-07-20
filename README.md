@@ -1,8 +1,6 @@
 # ShadowJobs
 Shadow Jobs Project
 
-Shadow Jobs Project
-
 Shadow-Jobs, an application that offers a service for employers to match the employees needed, to cover their positions quickly and reliably. 
 Shadow-Jobs is a service Customer to Customer, Students to Restaurants.
 
